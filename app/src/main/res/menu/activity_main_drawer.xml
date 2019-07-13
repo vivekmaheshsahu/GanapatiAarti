@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/start"
+            android:icon="@android:drawable/ic_media_ff"
+            android:title="गणेश भजन"/>
+        <item
+            android:id="@+id/hindi_aarti"
+            android:icon="@android:drawable/ic_menu_agenda"
+            android:title="हिंदी और मराठी आरती" />
+        <item
+            android:id="@+id/English_aarti"
+            android:icon="@android:drawable/ic_menu_agenda"
+            android:title="English Aarti" />
+
+    </group>
+
+    <item android:title="प्रसिद्ध मंडल">
+        <menu>
+            <item
+                android:id="@+id/mumbai_mandle"
+                android:icon="@android:drawable/ic_menu_directions"
+                android:title="मुंबई मंडल" />
+            <item
+                android:id="@+id/pune"
+                android:icon="@android:drawable/ic_menu_directions"
+                android:title="पुणे मंडल" />
+        </menu>
+    </item>
+    <group android:checkableBehavior="single"
+        android:id="@+id/group1">
+<item android:id="@+id/share"
+    android:icon="@android:drawable/ic_menu_send"
+    android:title="Share"
+    app:itemTextAppearance="?android:attr/textAppearanceMedium"
+    />
+
+    <item android:id="@+id/feedback"
+        android:icon="@android:drawable/ic_menu_myplaces"
+        app:itemTextAppearance="?android:attr/textAppearanceMedium"
+        android:title="Feedback"
+        />
+
+    <item android:id="@+id/update"
+        app:itemTextAppearance="?android:attr/textAppearanceMedium"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="Update app"
+        />
+        <item android:id="@+id/Disclaimer"
+            app:itemTextAppearance="?android:attr/textAppearanceMedium"
+            android:icon="@android:drawable/ic_menu_help"
+            android:title="Disclaimer"
+            />
+    </group>
+</menu>

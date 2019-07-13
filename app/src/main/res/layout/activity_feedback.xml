@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="fitXY"
+        android:id="@+id/im1"
+        android:src="@drawable/feedback"/>
+    <EditText
+        android:id="@+id/etMail_feedback_message"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/im1"
+        android:textSize="16sp"
+        android:inputType="textMultiLine"
+        android:textColor="@android:color/black"
+        android:background="@drawable/shape">
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/t1"
+        android:layout_below="@+id/etMail_feedback_message" />
+    <Button
+        android:id="@+id/btn_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/t1"
+        android:text="Send Feedback Via Gmail"
+        android:background="@drawable/pink_button_on_select"
+        android:textColor="@android:color/white"/>
+</RelativeLayout>

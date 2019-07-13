@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Ganapati Aarti</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_send_feedback">Send feedback</string>
+    <string name="mail_feedback_email">vivekmaheshsahu@gmail.com</string>
+    <string name="mail_feedback_subject">Feedback on Ganpati Aarti app</string>
+
+    <string name="action_add_favourite">Add to Favourites</string>
+    <string name="action_play_next">Play Next</string>
+    <string name="backdrop_title">Ganpati Aarti</string>
+    <string name="backdrop_subtitle">This season top 10 Aarti</string>
+    <string name="admob_app_id">ca-app-pub-2609666985136692~4976099823</string>
+    <string name="banner_ad_unit_id">ca-app-pub-2609666985136692/7609716610</string>
+    <string name="interstitial_ad">ca-app-pub-2609666985136692/2984075891</string>
+
+    <string name="please_grant_all_permissions">Insufficient privileges. Please grant all permissions.</string>
+    <string name="ga_trackingId" translatable="false">${YOUR_TRACKING_ID}</string>
+
+
+    // testing ids
+    <!--<string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>-->
+    <!--<string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>-->
+    <!--<string name="interstitial_ad">ca-app-pub-3940256099942544/1033173712</string>-->
+</resources>
