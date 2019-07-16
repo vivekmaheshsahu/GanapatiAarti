@@ -32,11 +32,18 @@
     </item>
     <group android:checkableBehavior="single"
         android:id="@+id/group1">
-<item android:id="@+id/share"
-    android:icon="@android:drawable/ic_menu_send"
-    android:title="Share"
-    app:itemTextAppearance="?android:attr/textAppearanceMedium"
-    />
+
+        <item
+            android:id="@+id/exit"
+            app:itemTextAppearance="?android:attr/textAppearanceMedium"
+            android:icon="@android:drawable/ic_menu_close_clear_cancel"
+            android:title="बाहर जाएं" />
+
+        <item android:id="@+id/share"
+            android:icon="@android:drawable/ic_menu_send"
+            android:title="Share"
+            app:itemTextAppearance="?android:attr/textAppearanceMedium"
+            />
 
     <item android:id="@+id/feedback"
         android:icon="@android:drawable/ic_menu_myplaces"

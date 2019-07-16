@@ -8,19 +8,29 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.ads.AdView;
+
+import digispark.tech.ganapatiaarti.utils.UserInterfaceUtils;
+
 public class pune_mandle_detail extends AppCompatActivity {
+    private AdView adView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pune_mandle_detail);
+        setTitle("Pune Mandals");
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        adView = findViewById(R.id.adView);
+        UserInterfaceUtils.showBannerAd(adView);
 
         Intent intent = getIntent();
         int intValue = intent.getIntExtra("songindex", 0);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         TextView t1,t2;
         ImageView im1;
-
-        setTitle("Pune Mandals");
         im1=(ImageView)(findViewById(R.id.img1)) ;
         t1 =(TextView)(findViewById(R.id.txt));
         t2 = (TextView)(findViewById(R.id.t1));

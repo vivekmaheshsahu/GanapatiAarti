@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#4a4a4a">
@@ -25,12 +26,64 @@
             android:ellipsize="end"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/songThumbnail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:gravity="center"
+        android:layout_below="@+id/player_header_bg"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <ImageView android:layout_width="200dp"
+            android:id="@+id/img"
+            android:layout_height="150dp"
+            android:scaleType="fitXY"
+            />
 
+    </LinearLayout>
 
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/songThumbnail"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id"/>
+
+    <!-- Repeat / Shuffle buttons -->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_above="@+id/timerDisplay"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <!-- Repeat Button -->
+        <ImageButton
+            android:id="@+id/btnRepeat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_repeat"
+            android:layout_marginRight="5dp"
+            android:background="@null"/>
+
+        <!-- Shuffle Button -->
+        <!--<ImageButton
+            android:id="@+id/btnShuffle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_shuffle"
+            android:layout_marginLeft="5dp"
+            android:background="@null"/>-->
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/player_footer_bg"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_alignParentBottom="true"
         android:background="@layout/bg_player_footer"
@@ -154,52 +207,5 @@
             android:textColor="#04cbde"
             android:textStyle="bold"/>
     </LinearLayout>
-
-    <!-- Repeat / Shuffle buttons -->
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_above="@+id/timerDisplay"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-
-        <!-- Repeat Button -->
-        <ImageButton
-            android:id="@+id/btnRepeat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/btn_repeat"
-            android:layout_marginRight="5dp"
-            android:background="@null"/>
-
-        <!-- Shuffle Button -->
-        <!--<ImageButton
-            android:id="@+id/btnShuffle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/btn_shuffle"
-            android:layout_marginLeft="5dp"
-            android:background="@null"/>-->
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/songThumbnail"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:gravity="center"
-        android:layout_below="@+id/player_header_bg"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-        <ImageView android:layout_width="200dp"
-            android:id="@+id/img"
-            android:layout_height="150dp"
-            android:scaleType="fitXY"
-            />
-
-</LinearLayout>
-
 
 </RelativeLayout>

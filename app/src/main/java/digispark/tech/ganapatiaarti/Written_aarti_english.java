@@ -8,8 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import digispark.tech.ganapatiaarti.utils.UserInterfaceUtils;
 
 public class Written_aarti_english extends AppCompatActivity {
 
@@ -17,13 +21,20 @@ public class Written_aarti_english extends AppCompatActivity {
     private RecyclerView recyclerView;
     private AlbumsAdapter_written_english adapter;
     private List<Album> albumList;
+    private AdView adView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_written_aarti_english);
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        adView = findViewById(R.id.adView);
+        UserInterfaceUtils.showBannerAd(adView);
+
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         albumList = new ArrayList<>();
         adapter = new AlbumsAdapter_written_english(albumList);
 

@@ -13,8 +13,8 @@
     <string name="backdrop_title">Ganpati Aarti</string>
     <string name="backdrop_subtitle">This season top 10 Aarti</string>
     <string name="admob_app_id">ca-app-pub-2609666985136692~4976099823</string>
-    <string name="banner_ad_unit_id">ca-app-pub-2609666985136692/7609716610</string>
-    <string name="interstitial_ad">ca-app-pub-2609666985136692/2984075891</string>
+    <string name="banner_ad_unit_id">ca-app-pub-2609666985136692/1836801092</string>
+    <string name="interstitial_ad">ca-app-pub-2609666985136692/8678198152</string>
 
     <string name="please_grant_all_permissions">Insufficient privileges. Please grant all permissions.</string>
     <string name="ga_trackingId" translatable="false">${YOUR_TRACKING_ID}</string>

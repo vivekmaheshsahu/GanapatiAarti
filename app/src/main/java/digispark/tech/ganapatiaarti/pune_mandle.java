@@ -8,11 +8,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import digispark.tech.ganapatiaarti.utils.UserInterfaceUtils;
 import me.relex.circleindicator.CircleIndicator;
 
 public class pune_mandle extends AppCompatActivity {
@@ -25,14 +28,20 @@ public class pune_mandle extends AppCompatActivity {
     private static int currentPage = 0;
     private static final Integer[] XMEN= {R.drawable.g23,R.drawable.g27,R.drawable.g25,R.drawable.g26,R.drawable.g24,R.drawable.g28,R.drawable.g29,R.drawable.g30};
     private ArrayList<Integer> XMENArray = new ArrayList<Integer>();
+    private AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pune_mandle);
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         setTitle("Pune Mandals");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        adView = findViewById(R.id.adView);
+        UserInterfaceUtils.showBannerAd(adView);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         albumList = new ArrayList<>();
         adapter = new AlbumsAdapter_mandal_pune(albumList);
 

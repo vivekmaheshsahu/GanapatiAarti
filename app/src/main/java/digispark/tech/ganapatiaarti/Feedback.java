@@ -2,17 +2,26 @@ package digispark.tech.ganapatiaarti;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.crashlytics.android.Crashlytics;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
+import digispark.tech.ganapatiaarti.utils.UserInterfaceUtils;
+
 public class Feedback extends AppCompatActivity implements View.OnClickListener {
     private Button btn_feedback;
     private EditText etMail_feedback_message;
     private String emailMessege;
     private final String TAG = "FeedbackActivity";
+    private AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +33,9 @@ public class Feedback extends AppCompatActivity implements View.OnClickListener 
 
         btn_feedback = (Button) findViewById(R.id.btn_feedback);
         btn_feedback.setOnClickListener(this);
+
+        adView = (AdView) findViewById(R.id.adView);
+        UserInterfaceUtils.showBannerAd(adView);
     }
 
     @Override

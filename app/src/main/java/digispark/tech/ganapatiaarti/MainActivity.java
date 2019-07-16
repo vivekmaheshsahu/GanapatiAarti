@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,12 +21,19 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import digispark.tech.ganapatiaarti.constants.Constant;
+import digispark.tech.ganapatiaarti.firebase.NotificationHelper;
+import digispark.tech.ganapatiaarti.utils.UserInterfaceUtils;
 
 
 public class MainActivity extends AppCompatActivity
@@ -33,6 +41,9 @@ public class MainActivity extends AppCompatActivity
     private RecyclerView recyclerView;
     private AlbumsAdapter adapter;
     private List<Album> albumList;
+    private FirebaseAnalytics mFirebaseAnalytics;
+    private InterstitialAd mInterstitialAd;
+    private AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +63,49 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+        adView = findViewById(R.id.adView);
+        UserInterfaceUtils.showBannerAd(adView);
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_ad));
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+                Log.i("Ads", "onAdLoaded");
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                // Code to be executed when an ad request fails.
+                Log.i("Ads", "onAdFailedToLoad");
+            }
+
+            @Override
+            public void onAdOpened() {
+                // Code to be executed when the ad is displayed.
+                Log.i("Ads", "onAdOpened");
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                // Code to be executed when the user has left the app.
+                Log.i("Ads", "onAdLeftApplication");
+            }
+
+            @Override
+            public void onAdClosed() {
+                // Code to be executed when when the interstitial ad is closed.
+                Log.i("Ads", "onAdClosed");
+                // load next ad
+                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+            }
+        });
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         albumList = new ArrayList<>();
@@ -68,37 +122,22 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onBackPressed() {
-        AlertDialog diaBox = AskOption();
-        diaBox.show();
+    protected void onResume() {
+        super.onResume();
+
+        NotificationHelper.clearNotifications(this);
     }
-    private AlertDialog AskOption()
-    {
-        AlertDialog myQuittingDialogBox =new AlertDialog.Builder(this)
-                .setTitle("Exit")
-                .setMessage("Are you sure you want to exit?")
 
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        if (MusicPlayerActivity.mp != null){
-                            MusicPlayerActivity.mp.stop();
-                            MusicPlayerActivity.mp.release();
-                            MusicPlayerActivity.mp = null;
-                        }
-                        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-                        homeIntent.addCategory( Intent.CATEGORY_HOME );
-                        homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(homeIntent);
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })
-                .create();
-        return myQuittingDialogBox;
-
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START))
+            drawer.closeDrawer(GravityCompat.START);
+        else
+        {
+            if (mInterstitialAd.isLoaded())
+                mInterstitialAd.show();
+        }
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -141,7 +180,7 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.update) {
 
-            Uri uri = Uri.parse("market://details?id=aarti.ganpati.system.ganpati_aarti");
+            Uri uri = Uri.parse(Constant.PLAY_STORE_LINK);
             Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
 
             // After pressing back button from google play will continue to app
@@ -150,7 +189,18 @@ public class MainActivity extends AppCompatActivity
 
             startActivity(goToMarket);
         }
-
+        else if (id == R.id.exit){
+            if (MusicPlayerActivity.mp != null){
+                MusicPlayerActivity.mp.stop();
+                MusicPlayerActivity.mp.release();
+                MusicPlayerActivity.mp = null;
+            }
+            Intent exitIntent = new Intent(Intent.ACTION_MAIN);
+            exitIntent.addCategory(Intent.CATEGORY_HOME);
+            exitIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(exitIntent);
+            finish();
+        }
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -9,11 +9,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import digispark.tech.ganapatiaarti.utils.UserInterfaceUtils;
 import me.relex.circleindicator.CircleIndicator;
 
 
@@ -26,16 +29,19 @@ public class Mumbai_mandle extends AppCompatActivity {
     private static final Integer[] XMEN= {R.drawable.g1,R.drawable.g5,R.drawable.g9,R.drawable.g11,R.drawable.g14,R.drawable.g19,R.drawable.g18};
     private ArrayList<Integer> XMENArray = new ArrayList<Integer>();
     private static final String TAG = "MainActivity";
-
+    private AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mumbai_mandle);
-
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Mumbai Mandals");
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        adView = findViewById(R.id.adView);
+        UserInterfaceUtils.showBannerAd(adView);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         albumList = new ArrayList<>();
         adapter = new AlbumsAdapter_mandal(albumList);
 

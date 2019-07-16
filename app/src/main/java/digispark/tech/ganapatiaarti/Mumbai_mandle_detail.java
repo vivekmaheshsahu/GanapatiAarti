@@ -8,16 +8,26 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.ads.AdView;
+
+import digispark.tech.ganapatiaarti.utils.UserInterfaceUtils;
+
 public class Mumbai_mandle_detail extends AppCompatActivity {
+    private AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mumbai_mandle_detail);
-        Intent intent = getIntent();
         setTitle("Mumbai Mandals");
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        adView = findViewById(R.id.adView);
+        UserInterfaceUtils.showBannerAd(adView);
+
+        Intent intent = getIntent();
         int intValue = intent.getIntExtra("songindex", 0);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         TextView t1,t2;
         ImageView im1,im2,im3;

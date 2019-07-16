@@ -13,6 +13,10 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdView;
+
+import digispark.tech.ganapatiaarti.utils.UserInterfaceUtils;
+
 public class MusicPlayerActivity extends Activity implements SeekBar.OnSeekBarChangeListener, View.OnClickListener, MediaPlayer.OnCompletionListener {
 
     private TextView tvSongTitle;
@@ -35,17 +39,19 @@ public class MusicPlayerActivity extends Activity implements SeekBar.OnSeekBarCh
     public static MediaPlayer mp;
     String songIndex;
     private static final String TAG = "MainActivity";
-
-
     int indexOfSong;
     ImageView img;
     private Handler mHandler = new Handler();
+    private AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music_player);
+
+        adView = findViewById(R.id.adView);
+        UserInterfaceUtils.showBannerAd(adView);
 
         Intent intent = getIntent();
         int intValue = intent.getIntExtra("songindex", 0);
@@ -123,6 +129,9 @@ public class MusicPlayerActivity extends Activity implements SeekBar.OnSeekBarCh
     {
         if (v == btnPlay)
         {
+            if (adView != null)
+                UserInterfaceUtils.showBannerAd(adView);
+
             if(mp.isPlaying())
             {
                 if(mp != null)
@@ -173,6 +182,8 @@ public class MusicPlayerActivity extends Activity implements SeekBar.OnSeekBarCh
         }
         if (v == btnNext)
         {
+            if (adView != null)
+                UserInterfaceUtils.showBannerAd(adView);
             if (mp != null)
                 mp.stop();
 
@@ -201,6 +212,8 @@ public class MusicPlayerActivity extends Activity implements SeekBar.OnSeekBarCh
         }
         if (v == btnPrevious)
         {
+            if (adView != null)
+                UserInterfaceUtils.showBannerAd(adView);
             if (mp != null)
                 mp.stop();
 

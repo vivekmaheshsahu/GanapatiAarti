@@ -10,9 +10,14 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.ads.AdView;
+
+import digispark.tech.ganapatiaarti.utils.UserInterfaceUtils;
+
 public class written_eng_detail_aarti extends AppCompatActivity {
     int intValue;
     int a;
+    private AdView adView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +35,10 @@ public class written_eng_detail_aarti extends AppCompatActivity {
         b2.setWidth((width/2)-20);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        adView = findViewById(R.id.adView);
+        UserInterfaceUtils.showBannerAd(adView);
+
       intValue = intent.getIntExtra("songindex", 0);
         TextView t1,t2;
         t1 =(TextView)(findViewById(R.id.txt));
