@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "205641331863",
+    "firebase_url": "https://ganapatiaarti.firebaseio.com",
+    "project_id": "ganapatiaarti",
+    "storage_bucket": "ganapatiaarti.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:205641331863:android:75655b41b7a25515",
+        "android_client_info": {
+          "package_name": "digispark.tech.ganapatiaarti"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "205641331863-36r2fokrn5i6vj0r6kedvsga3uc2d26i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "digispark.tech.ganapatiaarti",
+            "certificate_hash": "f8a84ff945230a2c2a23242c62170a5d2ba739fd"
+          }
+        },
+        {
+          "client_id": "205641331863-5risr17be83k438pe9flv74jusv0hm55.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD73EOOhqCXUc4Lt9o4L2Zse1NeP3Vxz2k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "205641331863-5risr17be83k438pe9flv74jusv0hm55.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
