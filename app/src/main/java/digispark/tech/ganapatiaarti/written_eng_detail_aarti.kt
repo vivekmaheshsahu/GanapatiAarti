@@ -1,52 +1,52 @@
-package digispark.tech.ganapatiaarti;
+package digispark.tech.ganapatiaarti
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.content.Intent
+import android.os.Bundle
+import android.util.DisplayMetrics
+import android.view.MenuItem
+import android.view.View
+import android.widget.Button
+import android.widget.TextView
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity
 
-import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.AdView
 
-import digispark.tech.ganapatiaarti.utils.UserInterfaceUtils;
+import digispark.tech.ganapatiaarti.utils.UserInterfaceUtils
 
-public class written_eng_detail_aarti extends AppCompatActivity {
-    int intValue;
-    int a;
-    private AdView adView;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_written_eng_detail_aarti);
-        Intent intent = getIntent();
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+class written_eng_detail_aarti : AppCompatActivity() {
+    internal var intValue: Int = 0
+    internal var a: Int = 0
+    private var adView: AdView? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_written_eng_detail_aarti)
+        val intent = intent
+        val metrics = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(metrics)
 
-        int height = metrics.heightPixels;
-        int width = metrics.widthPixels;
-        Button b1,b2;
-        b1 =(Button)(findViewById(R.id.b1));
-        b2 =(Button)(findViewById(R.id.b2));
-        b1.setWidth((width/2)-20);
-        b2.setWidth((width/2)-20);
+        val height = metrics.heightPixels
+        val width = metrics.widthPixels
+        val b1: Button
+        val b2: Button
+        b1 = findViewById<View>(R.id.b1) as Button
+        b2 = findViewById<View>(R.id.b2) as Button
+        b1.width = width / 2 - 20
+        b2.width = width / 2 - 20
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        adView = findViewById(R.id.adView);
-        UserInterfaceUtils.showBannerAd(adView);
+        adView = findViewById(R.id.adView)
+        UserInterfaceUtils.showBannerAd(adView)
 
-      intValue = intent.getIntExtra("songindex", 0);
-        TextView t1,t2;
-        t1 =(TextView)(findViewById(R.id.txt));
-        t2 = (TextView)(findViewById(R.id.t1));
-        if(intValue ==1)
-        {
-            t2.setText("SHENDUR LAL CHADHAYO");
-            t1.setText("Shendur lal chadhayo" +
+        intValue = intent.getIntExtra("songindex", 0)
+        val t1: TextView
+        val t2: TextView
+        t1 = findViewById<View>(R.id.txt) as TextView
+        t2 = findViewById<View>(R.id.t1) as TextView
+        if (intValue == 1) {
+            t2.text = "SHENDUR LAL CHADHAYO"
+            t1.text = "Shendur lal chadhayo" +
                     " Achchha gajmukhko" +
                     " Dondil lal biraje" +
                     " Sut gauriharko" +
@@ -70,12 +70,11 @@ public class written_eng_detail_aarti extends AppCompatActivity {
                     "Jai dev jai dev\n" +
                     " Shri ganaraj vidhyasukhdata" +
                     " Dhanya tumara darshan" +
-                    " Mera man ramata");
+                    " Mera man ramata"
         }
-        if(intValue ==2)
-        {
-            t2.setText("LAVATHAVATI VIKRALA");
-            t1.setText("Lavathavati Vikrala Brahmandi Mala\n" +
+        if (intValue == 2) {
+            t2.text = "LAVATHAVATI VIKRALA"
+            t1.text = "Lavathavati Vikrala Brahmandi Mala\n" +
                     "Vishe Kantha Kala Trinetri Jwala।\n" +
                     "Lavanya Sundara Mastaki Bala।\n" +
                     "Tethuniya Jala Nirmala Vahe Jhulajhula॥\n" +
@@ -101,12 +100,11 @@ public class written_eng_detail_aarti extends AppCompatActivity {
                     "Shatakotiche Beej Vache Uchchari।\n" +
                     "Raghukulatilaka Ramadasa Antari॥\n" +
                     "Jai Deva Jai Deva Jai Shri Shankara।\n" +
-                    "Aarti Ovalu Tuja Karpuragaura॥\n");
+                    "Aarti Ovalu Tuja Karpuragaura॥\n"
         }
-        if(intValue ==0)
-        {
-            t2.setText("Sukhkarta Dukhharta");
-            t1.setText("Sukhkarta Dukhharta Varta Vighnachi \n" +
+        if (intValue == 0) {
+            t2.text = "Sukhkarta Dukhharta"
+            t1.text = "Sukhkarta Dukhharta Varta Vighnachi \n" +
                     "Nurvi Purvi Prem Krupa Jayachi \n" +
                     "Sarvangi Sundar Uti Shendurachi \n" +
                     "Kanti Jhalke Mal Mukataphalaanchi..\n\n" +
@@ -121,12 +119,11 @@ public class written_eng_detail_aarti extends AppCompatActivity {
                     "Saral Sond Vakratunda Trinayana \n" +
                     "Das Ramacha Vat Pahe Sadana \n" +
                     "Sankati Pavave Nirvani Rakshave Survarvandana \n" +
-                    "Jaidev Jaidev Jai Mangal Murti ");
+                    "Jaidev Jaidev Jai Mangal Murti "
         }
-        if(intValue ==5)
-        {
-            t2.setText("Yei oh Vitthale Majhe");
-            t1.setText("Yei ho vitthale maze maooliye I\n" +
+        if (intValue == 5) {
+            t2.text = "Yei oh Vitthale Majhe"
+            t1.text = "Yei ho vitthale maze maooliye I\n" +
                     "Niddhalavari kar theooni vat mi pahi II \n\n" +
                     "Aliya geliya hati dadhi nirop II\n" +
                     "Pandharpuri ahe maza maybap II Yei II\n\n" +
@@ -136,12 +133,11 @@ public class written_eng_detail_aarti extends AppCompatActivity {
                     "Vishnudas nama jive bhave ovalee II Yei II\n\n" +
                     "Aso naso bhav amha tujhiya thaya I\n" +
                     "Krupadrashti pahe maza pandhariraya\n" +
-                    "II Yei II");
+                    "II Yei II"
         }
-        if(intValue ==3)
-        {
-            t2.setText("Durge durghat bhari");
-            t1.setText("Durge durghat bhari tujvin sansari " +
+        if (intValue == 3) {
+            t2.text = "Durge durghat bhari"
+            t1.text = "Durge durghat bhari tujvin sansari " +
                     "Anathnathe ambe karuna vistari " +
                     "Vari vari janam marante vari " +
                     "Hari padalo ata sankat nivari II 1 II\n" +
@@ -160,15 +156,13 @@ public class written_eng_detail_aarti extends AppCompatActivity {
                     "Prasanna vadane prasanna hosi nijdasa \n" +
                     "Kleshapasuni sodivi todi bhavpasha \n" +
                     "Ambe tujvachun kon purvil asha \n" +
-                    "Narhari tallin jhala padpankajlesha II 3 II"+
-            "\n\n Jai Devi Jai Devi Mahishasuramathini " +
+                    "Narhari tallin jhala padpankajlesha II 3 II" +
+                    "\n\n Jai Devi Jai Devi Mahishasuramathini " +
                     "Suravara Ishwara Varade Taraka Sanjivani II"
-            );
         }
-        if(intValue ==7)
-        {
-            t2.setText("Om Jai Jagadish Hare");
-            t1.setText("Om Jai Jagadish Hare " +
+        if (intValue == 7) {
+            t2.text = "Om Jai Jagadish Hare"
+            t1.text = "Om Jai Jagadish Hare " +
                     "Swami Jaya Jagadish Hare " +
                     "Bhakta janon ke sankat " +
                     "" +
@@ -243,12 +237,11 @@ public class written_eng_detail_aarti extends AppCompatActivity {
                     "Bhakta janon ke sankat " +
                     "Bhakta janon ke sankat " +
                     "Kshan me door kare " +
-                    "Om Jai Jagadish Hare");
+                    "Om Jai Jagadish Hare"
         }
-        if(intValue ==6)
-        {
-            t2.setText("Jai Ganesh, Jai Ganesh Deva");
-            t1.setText("Jai Ganesh, Jai Ganesh, Jai Ganesh Deva Mata Jaaki Parvati Pita Mahadeva\n" +
+        if (intValue == 6) {
+            t2.text = "Jai Ganesh, Jai Ganesh Deva"
+            t1.text = "Jai Ganesh, Jai Ganesh, Jai Ganesh Deva Mata Jaaki Parvati Pita Mahadeva\n" +
                     "\n" +
                     "Ek Dant Dayavant, Chaar Bhuja Dhaari " +
                     "Maathe Pe Sindhoor Sohe, Muse Ki Savari " +
@@ -266,13 +259,12 @@ public class written_eng_detail_aarti extends AppCompatActivity {
                     "Mata Jaaki Parvati Pita Mahadeva\n" +
                     "\n" +
                     "Jai Ganesh, Jai Ganesh, Jai Ganesh Deva " +
-                    "Mata Jaaki Parvati, Pita Mahadeva");
+                    "Mata Jaaki Parvati, Pita Mahadeva"
 
         }
-        if(intValue ==10)
-        {
-            t2.setText("Jai ambe gauri maiya jai shyama gauri");
-            t1.setText("Jai ambe gauri maiya jai shyama gauri\n" +
+        if (intValue == 10) {
+            t2.text = "Jai ambe gauri maiya jai shyama gauri"
+            t1.text = "Jai ambe gauri maiya jai shyama gauri\n" +
                     "Tumako nishadin dhyawat hari bramha shivaji || Maiya Jai..||\n" +
                     "\n" +
                     "Mang sindur virajat tiko mrigamad ko\n" +
@@ -309,12 +301,11 @@ public class written_eng_detail_aarti extends AppCompatActivity {
                     "Shrimalaketu mein rajat koti ratan jyoti || Maiya..\n" +
                     "\n" +
                     "Shri ambeji ki arati jo koi nar gave\n" +
-                    "Kahat shivanand swami sukh-sampatti pave || Maiya\n");
+                    "Kahat shivanand swami sukh-sampatti pave || Maiya\n"
         }
-        if(intValue ==4)
-        {
-            t2.setText("Yuge atthavis");
-            t1.setText("Yuge atthavis vithevari Ubha\n" +
+        if (intValue == 4) {
+            t2.text = "Yuge atthavis"
+            t1.text = "Yuge atthavis vithevari Ubha\n" +
                     "vaamaangi rakhumai rise rivya shobha\n" +
                     "punralika bheti parbrahma aalegaa\n" +
                     "Charni vaahe bheema Urrhari jaga\n" +
@@ -348,12 +339,11 @@ public class written_eng_detail_aarti extends AppCompatActivity {
                     "rarshan helamaatre tayaan hoya mukti\n" +
                     "keshavasi namrev marhavasi namrev bhaaven Ovaaliti\n" +
                     "jaya rev jaya rev jaya panruranga\n" +
-                    "rakhumaai vallabha raaichya vallabha paave jivlaga\n");
+                    "rakhumaai vallabha raaichya vallabha paave jivlaga\n"
         }
-        if(intValue ==8)
-        {
-            t2.setText("Shri Dynarajachi Aarti");
-            t1.setText("Arti dyanraja || mahakaivalyateja ||" +
+        if (intValue == 8) {
+            t2.text = "Shri Dynarajachi Aarti"
+            t1.text = "Arti dyanraja || mahakaivalyateja ||" +
                     "Sevati sadhusant || Manu vedhala maza || 1 ||" +
                     "Arti dyanraja ||\n\n" +
                     "Lopale gyan jagi || Hit nenati koni ||" +
@@ -364,12 +354,11 @@ public class written_eng_detail_aarti extends AppCompatActivity {
                     "Arti dyanraja ||\n\n" +
                     "Prakat gyuha bole || Vishva brahmachi kele || " +
                     "Ram janadarni || Paai mastak thele || 4 ||" +
-                    "Arti dyanraja ||");
+                    "Arti dyanraja ||"
         }
-        if(intValue ==9)
-        {
-            t2.setText("Ghalin lotangan vandin charan");
-            t1.setText("Ghalin lotangan vandin charan ||" +
+        if (intValue == 9) {
+            t2.text = "Ghalin lotangan vandin charan"
+            t1.text = "Ghalin lotangan vandin charan ||" +
                     "Dolyani pahin rup tujhe || " +
                     "Preme alingan anande pujin || " +
                     "Bhave ovaleen mhane nama || 1 || \n" +
@@ -397,12 +386,11 @@ public class written_eng_detail_aarti extends AppCompatActivity {
                     "hare || " +
                     "Hare ram hare ram ram ram hare hare || " +
                     "Hare krishna hare krishna Krishna Krishna hare" +
-                    "hare ||");
+                    "hare ||"
         }
-        if(intValue ==11)
-        {
-            t2.setText("Shri Dattachi Aarti");
-            t1.setText("Trigunatmaka Traimurti Datta Ha Jana।\n" +
+        if (intValue == 11) {
+            t2.text = "Shri Dattachi Aarti"
+            t1.text = "Trigunatmaka Traimurti Datta Ha Jana।\n" +
                     "Triguni Avatara Trailokyarana।\n" +
                     "Neti Neti Shabda Na Ye Anumana।\n" +
                     "Suravara Munijana Yogi Samadhi Na Ye Dhyana॥\n" +
@@ -432,12 +420,11 @@ public class written_eng_detail_aarti extends AppCompatActivity {
                     "Eka Janardani Shri Datta Dhyana॥\n" +
                     "\n" +
                     "Jai Deva Jai Deva Jai Shri Gurudatta।\n" +
-                    "Aarti Ovalita Harali Bhavachinta॥");
+                    "Aarti Ovalita Harali Bhavachinta॥"
         }
-        if(intValue ==12)
-        {
-            t2.setText("Mantra pushpanjali");
-            t1.setText("Om yadnyen yadnyamayajant devastaani dharmani pradhamanyasan |\n" +
+        if (intValue == 12) {
+            t2.text = "Mantra pushpanjali"
+            t1.text = "Om yadnyen yadnyamayajant devastaani dharmani pradhamanyasan |\n" +
                     "Te ha nakam mahimanaha sachant yatra purve sadhyaha santi devaha ||\n\n" +
                     "Om rajadhirajaya prashyasahine namo vayam vaishranaaya kurmehe |\n" +
                     "Sa me kamanam kamkamaya mahyam kamemavaro vaishrano dadaatu |\n" +
@@ -446,59 +433,52 @@ public class written_eng_detail_aarti extends AppCompatActivity {
                     "Rajyam maharajyamaadhiptyamayam samantparyaayee syaatsarvabhoumaha |\n\n" +
                     "Sarvayush aantadaparardhatpruthivyai samudraparyantaya ekraliti\n" +
                     "Aavikshitsya kamprervimve devaha sabhasad itee |"
-                   );
-        }
-        else
-        {
+        } else {
 
         }
 
     }
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(written_eng_detail_aarti.this,Written_aarti_english.class);
-        startActivity(intent);
-        return super.onOptionsItemSelected(item);
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val intent = Intent(this@written_eng_detail_aarti, Written_aarti_english::class.java)
+        startActivity(intent)
+        return super.onOptionsItemSelected(item)
     }
 
-    public void onBackPressed()
-    {
-        Intent intent = new Intent(written_eng_detail_aarti.this,Written_aarti_english.class);
-        startActivity(intent);
+    override fun onBackPressed() {
+        val intent = Intent(this@written_eng_detail_aarti, Written_aarti_english::class.java)
+        startActivity(intent)
     }
-    public void back(View view)
-    {
-        if(intValue==0)
-        {
-            a=12;
-            Intent intent = new Intent(written_eng_detail_aarti.this,written_eng_detail_aarti.class);
-            intent.putExtra("songindex",a);
-            startActivity(intent);
-        }
-        else{
-            int value = intValue;
-            int second = value -1;
-            Intent intent = new Intent(written_eng_detail_aarti.this,written_eng_detail_aarti.class);
-            intent.putExtra("songindex",second);
-            startActivity(intent);
+
+    fun back(view: View) {
+        if (intValue == 0) {
+            a = 12
+            val intent = Intent(this@written_eng_detail_aarti, written_eng_detail_aarti::class.java)
+            intent.putExtra("songindex", a)
+            startActivity(intent)
+        } else {
+            val value = intValue
+            val second = value - 1
+            val intent = Intent(this@written_eng_detail_aarti, written_eng_detail_aarti::class.java)
+            intent.putExtra("songindex", second)
+            startActivity(intent)
         }
 
     }
-    public void next(View view)
-    {
 
-        if(intValue==12)
-        {
-            a=0;
-            Intent intent = new Intent(written_eng_detail_aarti.this,written_eng_detail_aarti.class);
-            intent.putExtra("songindex",a);
-            startActivity(intent);
-        }
-        else{
-           int value = intValue;
-          int second = value +1;
-            Intent intent = new Intent(written_eng_detail_aarti.this,written_eng_detail_aarti.class);
-            intent.putExtra("songindex",second);
-            startActivity(intent);
+    fun next(view: View) {
+
+        if (intValue == 12) {
+            a = 0
+            val intent = Intent(this@written_eng_detail_aarti, written_eng_detail_aarti::class.java)
+            intent.putExtra("songindex", a)
+            startActivity(intent)
+        } else {
+            val value = intValue
+            val second = value + 1
+            val intent = Intent(this@written_eng_detail_aarti, written_eng_detail_aarti::class.java)
+            intent.putExtra("songindex", second)
+            startActivity(intent)
         }
 
 

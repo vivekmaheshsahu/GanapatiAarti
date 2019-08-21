@@ -17,7 +17,6 @@
     <string name="interstitial_ad">ca-app-pub-2609666985136692/8678198152</string>
 
     <string name="please_grant_all_permissions">Insufficient privileges. Please grant all permissions.</string>
-    <string name="ga_trackingId" translatable="false">${YOUR_TRACKING_ID}</string>
 
 
     // testing ids

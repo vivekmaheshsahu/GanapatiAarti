@@ -1,54 +1,54 @@
-package digispark.tech.ganapatiaarti;
+package digispark.tech.ganapatiaarti
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.content.Intent
+import android.os.Bundle
+import android.util.DisplayMetrics
+import android.view.MenuItem
+import android.view.View
+import android.widget.Button
+import android.widget.TextView
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity
 
-import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.AdView
 
-import digispark.tech.ganapatiaarti.utils.UserInterfaceUtils;
+import digispark.tech.ganapatiaarti.utils.UserInterfaceUtils
 
-public class written_hindi_detail_aarti extends AppCompatActivity {
-    int intValue;
-    int a;
-    private AdView adView;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_written_eng_detail_aarti);
-        Intent intent = getIntent();
-
-
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        int height = metrics.heightPixels;
-        int width = metrics.widthPixels;
-        Button b1,b2;
-        b1 =(Button)(findViewById(R.id.b1));
-        b2 =(Button)(findViewById(R.id.b2));
-        b1.setWidth((width/2)-20);
-        b2.setWidth((width/2)-20);
+class written_hindi_detail_aarti : AppCompatActivity() {
+    internal var intValue: Int = 0
+    internal var a: Int = 0
+    private var adView: AdView? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_written_eng_detail_aarti)
+        val intent = intent
 
 
-    intValue = intent.getIntExtra("songindex", 0);
-        TextView t1,t2;
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        val metrics = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(metrics)
+        val height = metrics.heightPixels
+        val width = metrics.widthPixels
+        val b1: Button
+        val b2: Button
+        b1 = findViewById<View>(R.id.b1) as Button
+        b2 = findViewById<View>(R.id.b2) as Button
+        b1.width = width / 2 - 20
+        b2.width = width / 2 - 20
 
-        adView = findViewById(R.id.adView);
-        UserInterfaceUtils.showBannerAd(adView);
 
-        t1 =(TextView)(findViewById(R.id.txt));
-        t2 = (TextView)(findViewById(R.id.t1));
-        if(intValue ==0)
-        {
-            t2.setText("सुखकर्ता दुखहर्ता");
-            t1.setText("सुखकर्ता दुखहर्ता वार्ता विघ्नाची |\n" +
+        intValue = intent.getIntExtra("songindex", 0)
+        val t1: TextView
+        val t2: TextView
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
+        adView = findViewById(R.id.adView)
+        UserInterfaceUtils.showBannerAd(adView)
+
+        t1 = findViewById<View>(R.id.txt) as TextView
+        t2 = findViewById<View>(R.id.t1) as TextView
+        if (intValue == 0) {
+            t2.text = "सुखकर्ता दुखहर्ता"
+            t1.text = "सुखकर्ता दुखहर्ता वार्ता विघ्नाची |\n" +
                     "नुरवी पूर्वी प्रेम कृपा जयाची |\n" +
                     "सर्वांगी सुंदर उटी शेंदुराची |\n" +
                     "कंठी झरके माल मुक्ताफळाची || १ ||\n" +
@@ -65,12 +65,11 @@ public class written_hindi_detail_aarti extends AppCompatActivity {
                     "दास रामाचा वाट पाहे सदना |\n" +
                     "संकटी पावावे निर्वाणी रक्षावे सुरवंदना |\n" +
                     "जय देव जय देव जय मंगलमूर्ती |\n" +
-                    "दर्शनमात्रे मनकामना पुरती || ३ ||");
+                    "दर्शनमात्रे मनकामना पुरती || ३ ||"
         }
-        if(intValue ==2)
-        {
-            t2.setText("लवथवती विक्राळा");
-            t1.setText("लवथवती विक्राळा ब्रह्माण्डी माळा।\n" +
+        if (intValue == 2) {
+            t2.text = "लवथवती विक्राळा"
+            t1.text = "लवथवती विक्राळा ब्रह्माण्डी माळा।\n" +
                     "वीषे कण्ठ काळा त्रिनेत्री ज्वाळा।\n" +
                     "लावण्य सुन्दर मस्तकी बाळा।\n" +
                     "तेथुनिया जळ निर्मळ वाहे झुळझुळा॥\n" +
@@ -100,12 +99,11 @@ public class written_hindi_detail_aarti extends AppCompatActivity {
                     "रघुकुळटिळक रामदासा अन्तरी॥\n" +
                     "\n" +
                     "जय देव जय देव जय श्रीशंकरा।\n" +
-                    "आरती ओवाळू तुज कर्पुरगौरा॥");
+                    "आरती ओवाळू तुज कर्पुरगौरा॥"
         }
-        if(intValue ==1)
-        {
-            t2.setText("शेंदूर लाल चढायो");
-            t1.setText("शेंदूर लाल चढायो अच्छा गजमुखको ||\n" +
+        if (intValue == 1) {
+            t2.text = "शेंदूर लाल चढायो"
+            t1.text = "शेंदूर लाल चढायो अच्छा गजमुखको ||\n" +
                     "दोंदिल लाल बिराजे सूत गौरीहरको ||\n" +
                     "हाथ लिए गुड-लड्डू साईं सुरवरको ||\n" +
                     "महिमा कहे ना जाय लागत हूँ पदको || 1 ||\n" +
@@ -124,12 +122,11 @@ public class written_hindi_detail_aarti extends AppCompatActivity {
                     "ऐसे तुम महाराज मोको अति भावे ||\n" +
                     "गोसावीनंदन निशिदिन गुण गावे || 3 ||\n" +
                     "\n" +
-                    "जय जय श्री गणराज विध्यासुखदाता || धन्य तुम्हारा दर्शन मेरा मन रमता ||");
+                    "जय जय श्री गणराज विध्यासुखदाता || धन्य तुम्हारा दर्शन मेरा मन रमता ||"
         }
-        if(intValue ==5)
-        {
-            t2.setText("येई हो विठ्ठले माझे माऊली ये");
-            t1.setText("\n" +
+        if (intValue == 5) {
+            t2.text = "येई हो विठ्ठले माझे माऊली ये"
+            t1.text = "\n" +
                     "येई हो विठ्ठले माझे माऊली ये ॥\n" +
                     "निढळावरी कर ठेऊनी वाट मी पाहे ॥ धृ. ॥\n" +
                     "आलिया गेलीया हातीं धाडी निरोप ॥\n" +
@@ -145,12 +142,11 @@ public class written_hindi_detail_aarti extends AppCompatActivity {
                     "\n" +
                     "विठोबाचे राजमं नित्य दीपावली\n" +
                     "विष्णुदास नाराज भावे ओवाली\n" +
-                    "आई ओह विठ्ठले म्हजो मौलये ॥");
+                    "आई ओह विठ्ठले म्हजो मौलये ॥"
         }
-        if(intValue ==3)
-        {
-            t2.setText("दुर्गे दुर्घट भारी");
-            t1.setText("दुर्गे दुर्घट भारी तुजवीण संसारी \n" +
+        if (intValue == 3) {
+            t2.text = "दुर्गे दुर्घट भारी"
+            t1.text = "दुर्गे दुर्घट भारी तुजवीण संसारी \n" +
                     "अनाथ नाथे अंबे करुणा विस्तारी \n" +
                     "वारी वारी जन्म मरण तेवारी \n" +
                     "हारी पडलो आता संकट नेवारी\n" +
@@ -174,12 +170,11 @@ public class written_hindi_detail_aarti extends AppCompatActivity {
                     "नरहर तल्लीन झाला पद पंकज लेशा\n" +
                     "जय देवी जय देवी जय महिषासुर मर्दिनी \n" +
                     "सुरवर ईश्वर वरदे तारक संजीवनी \n" +
-                    "जय देवी जय देवी");
+                    "जय देवी जय देवी"
         }
-        if(intValue ==7)
-        {
-            t2.setText("ओम जय जगदीश हरे");
-            t1.setText("ओम जय जगदीश हरे, स्वामी जय जगदीश हरे " +
+        if (intValue == 7) {
+            t2.text = "ओम जय जगदीश हरे"
+            t1.text = "ओम जय जगदीश हरे, स्वामी जय जगदीश हरे " +
                     "भक्त जनों के संकट, दास जनों के संकट " +
                     "क्षण में दूर करें, ओम जय जगदीश हरे " +
                     "जो ध्यावे फल पावे, दुख बिन से मन का " +
@@ -217,12 +212,11 @@ public class written_hindi_detail_aarti extends AppCompatActivity {
                     "ओम जय जगदीश हरे " +
                     "ओम जय जगदीश हरे, स्वामी जय जगदीश हरे " +
                     "भक्त जनों के संकट, दास जनों के संकट " +
-                    "क्षण में दूर करें, ओम जय जगदीश हरे ||");
+                    "क्षण में दूर करें, ओम जय जगदीश हरे ||"
         }
-        if(intValue ==6)
-        {
-            t2.setText("जय गणेश जय गणेश देवा");
-            t1.setText("जय गणेश जय गणेश जय गणेश देवा। " +
+        if (intValue == 6) {
+            t2.text = "जय गणेश जय गणेश देवा"
+            t1.text = "जय गणेश जय गणेश जय गणेश देवा। " +
                     "माता जाकी पार्वती पिता महादेवा॥ " +
                     "एकदन्त दयावन्त चारभुजाधारी " +
                     "माथे सिंदूर सोहे मूसे की सवारी ।। जय गणेश" +
@@ -236,15 +230,14 @@ public class written_hindi_detail_aarti extends AppCompatActivity {
                     "‘सूर’ श्याम शरण आए सफल कीजे सेवा " +
                     "माता जाकी पार्वती पिता महादेवा॥\n\n" +
                     "दीनन की लाज राखो, शम्भु सुतवारी " +
-                    "कामना को पूर्ण करो, जग बलिहारी॥\n\n"+
+                    "कामना को पूर्ण करो, जग बलिहारी॥\n\n" +
                     "जय गणेश जय गणेश जय गणेश देवा।" +
-                    "माता जाकी पार्वती पिता महादेवा॥");
+                    "माता जाकी पार्वती पिता महादेवा॥"
         }
 
-        if(intValue ==4)
-        {
-            t2.setText("युगें अठ्ठावीस");
-            t1.setText("युगें अठ्ठावीस विटेवरी उभा।\n" +
+        if (intValue == 4) {
+            t2.text = "युगें अठ्ठावीस"
+            t1.text = "युगें अठ्ठावीस विटेवरी उभा।\n" +
                     "वामांगी रखुमाई दिसे दिव्य शोभा।\n" +
                     "पुण्डलिकाचे भेटी परब्रह्म आलें गा।\n" +
                     "चरणी वाहे भीमा उद्धरी जगा॥\n" +
@@ -282,12 +275,11 @@ public class written_hindi_detail_aarti extends AppCompatActivity {
                     "केशवासी नामदेव भावे ओंवाळिती॥\n" +
                     "\n" +
                     "जय देव जय देव जय पाण्डुरंगा।\n" +
-                    "रखुमाईवल्लभा राईच्या वल्लभा पावें जिवलगा॥");
+                    "रखुमाईवल्लभा राईच्या वल्लभा पावें जिवलगा॥"
         }
-        if(intValue ==8)
-        {
-            t2.setText("श्रीज्ञानदेवाची आरती ज्ञानराजा");
-            t1.setText("आरती ज्ञानराजा ॥" +
+        if (intValue == 8) {
+            t2.text = "श्रीज्ञानदेवाची आरती ज्ञानराजा"
+            t1.text = "आरती ज्ञानराजा ॥" +
                     "महाकैवल्यतेजा ॥" +
                     "सेविती साधुसंत ॥" +
                     "मनु वेधला माझा ॥ ध्रु० ॥\n\n" +
@@ -302,12 +294,11 @@ public class written_hindi_detail_aarti extends AppCompatActivity {
                     "प्रगट गुह्य बोले ॥" +
                     "विश्व ब्रह्मची केलें ॥" +
                     "रामा जनार्दनीं ॥" +
-                    "पायीं ठकचि ठेलें ॥ आरती० ॥ ३ ॥");
+                    "पायीं ठकचि ठेलें ॥ आरती० ॥ ३ ॥"
         }
-        if(intValue ==9)
-        {
-            t2.setText("घालीन लोटांगण");
-            t1.setText("घालीन लोटांगण" +
+        if (intValue == 9) {
+            t2.text = "घालीन लोटांगण"
+            t1.text = "घालीन लोटांगण" +
                     "घालीन लोटांगण, वंदीन चरण ।" +
                     "डोळ्यांनी पाहीन रुप तुझें ।" +
                     "प्रेमें आलिंगन, आनंदे पूजिन ।" +
@@ -321,12 +312,11 @@ public class written_hindi_detail_aarti extends AppCompatActivity {
                     "अच्युतं केशवं रामनारायणं कृष्णदामोदरं वासुदेवं हरिम।" +
                     "श्रीधरं माधवं गोपिकावल्लभं, जानकीनायकं रामचंद्र भजे ।।४।।\n\n" +
                     "हरे राम हर राम, राम राम हरे हरे ।" +
-                    "हरे कृष्ण हरे कृष्ण, कृष्ण कृष्ण हरे हरे ।");
+                    "हरे कृष्ण हरे कृष्ण, कृष्ण कृष्ण हरे हरे ।"
         }
-        if(intValue ==11)
-        {
-            t2.setText("जय अम्बे गौरी मैया जय श्यामा गौरी");
-            t1.setText("जय अम्बे गौरी, मैया जय श्यामा गौरी,\n" +
+        if (intValue == 11) {
+            t2.text = "जय अम्बे गौरी मैया जय श्यामा गौरी"
+            t1.text = "जय अम्बे गौरी, मैया जय श्यामा गौरी,\n" +
                     "तुमको निशदिन ध्यावत, हरि ब्रह्मा शिवरी।\n" +
                     "\n" +
                     "मांग सिंदूर विराजत, टीको मृगमद को,\n" +
@@ -363,12 +353,11 @@ public class written_hindi_detail_aarti extends AppCompatActivity {
                     "श्रीमालकेतु में राजत, कोटि रतन ज्योती॥\n" +
                     "\n" +
                     "श्री अंबेजी की आरति, जो कोइ नर गावे,\n" +
-                    "कहत शिवानंद स्वामी, सुख-संपति पावे॥");
+                    "कहत शिवानंद स्वामी, सुख-संपति पावे॥"
         }
-        if(intValue ==10)
-        {
-            t2.setText("श्री दत्त आरती");
-            t1.setText("त्रिगुणात्मक त्रैमूर्ती दत्त हा जाणा\n" +
+        if (intValue == 10) {
+            t2.text = "श्री दत्त आरती"
+            t1.text = "त्रिगुणात्मक त्रैमूर्ती दत्त हा जाणा\n" +
                     "त्रिगुणी अवतार त्रैलोक्य राणा\n" +
                     "नेति नेति शब्द न ये अनुमाना\n" +
                     "सुरवर मुनिजन योगी समाधी न ये ध्याना ॥१॥\n" +
@@ -386,12 +375,11 @@ public class written_hindi_detail_aarti extends AppCompatActivity {
                     "दत्त दत्त ऐसे लागले ध्यान\n" +
                     "हरपले मन झाले उन्मन\n" +
                     "मी तू पणाची झाली बोळवण\n" +
-                    "एका जनार्दनी श्रीदत्त ध्यान ॥४॥");
+                    "एका जनार्दनी श्रीदत्त ध्यान ॥४॥"
         }
-        if(intValue ==12)
-        {
-            t2.setText("प्रार्थना");
-            t1.setText("सदा सर्वदा योग तूझा घडावा |" +
+        if (intValue == 12) {
+            t2.text = "प्रार्थना"
+            t1.text = "सदा सर्वदा योग तूझा घडावा |" +
                     "तुझे कारणी देह माझा पडावा |" +
                     "उपेक्षू नको गूणवंता अनंता |" +
                     "रघूनायका मागणे हेचि आतां  ||\n\n" +
@@ -410,13 +398,12 @@ public class written_hindi_detail_aarti extends AppCompatActivity {
                     "अलंकापुरी पुण्य भूमी पवित्र |\n\n" +
                     "तिथे नांदतो ग्यानराजा सुपात्र |" +
                     "तया आठविता महापुण्यराशी|" +
-                    "नमस्कार माझा सदगुरु गयानेश्वराशी ||");
+                    "नमस्कार माझा सदगुरु गयानेश्वराशी ||"
         }
 
-        if(intValue ==13)
-        {
-            t2.setText("पुष्पांजली");
-            t1.setText("ॐ यज्ञेन यज्ञमयजंत देवास्तानि\n" +
+        if (intValue == 13) {
+            t2.text = "पुष्पांजली"
+            t1.text = "ॐ यज्ञेन यज्ञमयजंत देवास्तानि\n" +
                     "धर्माणि प्रथमान्यासन्|\n" +
                     "ते हं नाकं महिमान: सचंत\n" +
                     "यत्र पूर्वे साध्या: संति देवा:\n\n" +
@@ -435,60 +422,54 @@ public class written_hindi_detail_aarti extends AppCompatActivity {
                     "तदप्येष श्लोकोऽभिगीतो मरुत:\n" +
                     "परिवेष्टारो मरुत्तस्यावसन्गृहे\n" +
                     "आविक्षितस्य कामप्रेर्विश्वेदेवा: सभासद इति\n" +
-                    "\n");
-        }
-        else
-        {
+                    "\n"
+        } else {
 
         }
 
     }
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(written_hindi_detail_aarti.this,written_aarti_hindi.class);
-        startActivity(intent);
 
-        return super.onOptionsItemSelected(item);
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val intent = Intent(this@written_hindi_detail_aarti, written_aarti_hindi::class.java)
+        startActivity(intent)
+
+        return super.onOptionsItemSelected(item)
     }
 
-    public void onBackPressed()
-    {
-        Intent intent = new Intent(written_hindi_detail_aarti.this,written_aarti_hindi.class);
-        startActivity(intent);
+    override fun onBackPressed() {
+        val intent = Intent(this@written_hindi_detail_aarti, written_aarti_hindi::class.java)
+        startActivity(intent)
     }
-    public void back(View view)
-    {
-        if(intValue==0)
-        {
-            a=13;
-            Intent intent = new Intent(written_hindi_detail_aarti.this,written_hindi_detail_aarti.class);
-            intent.putExtra("songindex",a);
-            startActivity(intent);
-        }
-        else{
-            int value = intValue;
-            int second = value -1;
-            Intent intent = new Intent(written_hindi_detail_aarti.this,written_hindi_detail_aarti.class);
-            intent.putExtra("songindex",second);
-            startActivity(intent);
+
+    fun back(view: View) {
+        if (intValue == 0) {
+            a = 13
+            val intent = Intent(this@written_hindi_detail_aarti, written_hindi_detail_aarti::class.java)
+            intent.putExtra("songindex", a)
+            startActivity(intent)
+        } else {
+            val value = intValue
+            val second = value - 1
+            val intent = Intent(this@written_hindi_detail_aarti, written_hindi_detail_aarti::class.java)
+            intent.putExtra("songindex", second)
+            startActivity(intent)
         }
 
     }
-    public void next(View view)
-    {
 
-        if(intValue==13)
-        {
-            a=0;
-            Intent intent = new Intent(written_hindi_detail_aarti.this,written_hindi_detail_aarti.class);
-            intent.putExtra("songindex",a);
-            startActivity(intent);
-        }
-        else{
-            int value = intValue;
-            int second = value +1;
-            Intent intent = new Intent(written_hindi_detail_aarti.this,written_hindi_detail_aarti.class);
-            intent.putExtra("songindex",second);
-            startActivity(intent);
+    fun next(view: View) {
+
+        if (intValue == 13) {
+            a = 0
+            val intent = Intent(this@written_hindi_detail_aarti, written_hindi_detail_aarti::class.java)
+            intent.putExtra("songindex", a)
+            startActivity(intent)
+        } else {
+            val value = intValue
+            val second = value + 1
+            val intent = Intent(this@written_hindi_detail_aarti, written_hindi_detail_aarti::class.java)
+            intent.putExtra("songindex", second)
+            startActivity(intent)
         }
 
 
