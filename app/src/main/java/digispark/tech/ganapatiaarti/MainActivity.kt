@@ -180,14 +180,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             val goToMarket = Intent(Intent.ACTION_VIEW, uri)
 
             // After pressing back button from google play will continue to app
-            goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET or
+            goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_CLEAR_TASK or
                     Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
 
             startActivity(goToMarket)
         } else if (id == R.id.exit) {
             if (MusicPlayerActivity.mp != null) {
-                MusicPlayerActivity.mp!!.stop()
-                MusicPlayerActivity.mp!!.release()
+                MusicPlayerActivity.mp?.stop()
+                MusicPlayerActivity.mp?.release()
                 MusicPlayerActivity.mp = null
             }
             val exitIntent = Intent(Intent.ACTION_MAIN)
@@ -208,36 +208,36 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val covers = intArrayOf(R.drawable.album1, R.drawable.album2, R.drawable.album3, R.drawable.album4, R.drawable.album_2, R.drawable.album6, R.drawable.album5, R.drawable.album1, R.drawable.img11, R.drawable.album7)
 
         var a = Album("ekadantaya_vakratundaya", 13, covers[0])
-        albumList!!.add(a)
+        albumList?.add(a)
 
         a = Album("Sindoor Lal Chadayo", 8, covers[1])
-        albumList!!.add(a)
+        albumList?.add(a)
 
         a = Album("Sukhkarta Dukhharta", 11, covers[2])
-        albumList!!.add(a)
+        albumList?.add(a)
 
         a = Album("Lavthavti Vikrala", 12, covers[3])
-        albumList!!.add(a)
+        albumList?.add(a)
 
         a = Album("Durge Durghat Bhari", 14, covers[4])
-        albumList!!.add(a)
+        albumList?.add(a)
 
         a = Album("Yuge Atthavis", 1, covers[5])
-        albumList!!.add(a)
+        albumList?.add(a)
 
         a = Album("Yei Oh Vitthale", 11, covers[6])
-        albumList!!.add(a)
+        albumList?.add(a)
 
         a = Album("Tu Sukhkarta Tu Dukhharta", 14, covers[7])
-        albumList!!.add(a)
+        albumList?.add(a)
 
         a = Album("Jai Ganesh Jai Ganesh", 11, covers[8])
-        albumList!!.add(a)
+        albumList?.add(a)
 
         a = Album("Om Jai Jagdish Hare", 17, covers[9])
-        albumList!!.add(a)
+        albumList?.add(a)
 
-        adapter!!.notifyDataSetChanged()
+        adapter?.notifyDataSetChanged()
     }
 
 

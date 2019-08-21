@@ -1,7 +1,6 @@
 package digispark.tech.ganapatiaarti
 
 import android.app.Activity
-import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
@@ -44,20 +43,22 @@ class MusicPlayerActivity : Activity(), SeekBar.OnSeekBarChangeListener, View.On
     private val mUpdateTimeTask = object : Runnable {
         override fun run() {
             if (mp != null) {
-                val totalDuration = mp!!.duration.toLong()
-                val currentDuration = mp!!.currentPosition.toLong()
+                val totalDuration = mp?.duration?.toLong()
+                val currentDuration = mp?.currentPosition?.toLong()
 
                 // Displaying Total Duration time
                 /*Log.d(TAG,"totalDuration_val " + utils.milliSecondsToTimer(totalDuration));
                 songTotalDurationLabel.setText(utils.milliSecondsToTimer(totalDuration));*/
 
                 // Displaying time completed playing
-                Log.d(TAG, "currentDuration_val " + utils!!.milliSecondsToTimer(currentDuration))
-                songCurrentDurationLabel!!.text = utils!!.milliSecondsToTimer(currentDuration)
+                Log.d(TAG, "currentDuration_val " + currentDuration?.let { utils?.milliSecondsToTimer(it) })
+                songCurrentDurationLabel?.text = currentDuration?.let { utils?.milliSecondsToTimer(it) }
 
-                val progress = utils!!.getProgressPercentage(currentDuration, totalDuration)
+                val progress = currentDuration?.let { totalDuration?.let { it1 -> utils?.getProgressPercentage(it, it1) } }
                 //Log.d("Progress", ""+progress);
-                songProgressBar!!.progress = progress
+                if (progress != null) {
+                    songProgressBar?.progress = progress
+                }
 
                 // Running this thread after 100 milliseconds
                 mHandler.postDelayed(this, 100)
@@ -87,25 +88,25 @@ class MusicPlayerActivity : Activity(), SeekBar.OnSeekBarChangeListener, View.On
         setSongTitle(indexOfSong)
         playSongIndex(indexOfSong)
         btnPlay = findViewById<View>(R.id.btnPlay) as ImageButton
-        btnPlay!!.setOnClickListener(this)
+        btnPlay?.setOnClickListener(this)
 
         btnForward = findViewById<View>(R.id.btnForward) as ImageButton
-        btnForward!!.setOnClickListener(this)
+        btnForward?.setOnClickListener(this)
 
         btnBackward = findViewById<View>(R.id.btnBackward) as ImageButton
-        btnBackward!!.setOnClickListener(this)
+        btnBackward?.setOnClickListener(this)
 
         btnNext = findViewById<View>(R.id.btnNext) as ImageButton
-        btnNext!!.setOnClickListener(this)
+        btnNext?.setOnClickListener(this)
 
         btnPrevious = findViewById<View>(R.id.btnPrevious) as ImageButton
-        btnPrevious!!.setOnClickListener(this)
+        btnPrevious?.setOnClickListener(this)
 
         btnRepeat = findViewById<View>(R.id.btnRepeat) as ImageButton
-        btnRepeat!!.setOnClickListener(this)
+        btnRepeat?.setOnClickListener(this)
 
         songProgressBar = findViewById<View>(R.id.songProgressBar) as SeekBar
-        songProgressBar!!.setOnSeekBarChangeListener(this)
+        songProgressBar?.setOnSeekBarChangeListener(this)
 
         mUpdateTimeTask.run()
     }
@@ -120,46 +121,46 @@ class MusicPlayerActivity : Activity(), SeekBar.OnSeekBarChangeListener, View.On
             if (adView != null)
                 UserInterfaceUtils.showBannerAd(adView)
 
-            if (mp!!.isPlaying) {
+            if (mp?.isPlaying!!) {
                 if (mp != null) {
-                    mp!!.pause()
-                    btnPlay!!.setImageResource(R.drawable.btn_play)
+                    mp?.pause()
+                    btnPlay?.setImageResource(R.drawable.btn_play)
                 }
             } else {
                 if (mp != null) {
-                    mp!!.start()
-                    btnPlay!!.setImageResource(R.drawable.btn_pause)
+                    mp?.start()
+                    btnPlay?.setImageResource(R.drawable.btn_pause)
                 }
             }
         }
 
         if (v === btnForward) {
-            val currentPosition = mp!!.currentPosition
+            val currentPosition = mp?.currentPosition
             // check if seekForward time is lesser than song duration
-            if (currentPosition + seekForwardTime <= mp!!.duration) {
+            if (currentPosition!! + seekForwardTime <= mp?.duration!!) {
                 // forward song
-                mp!!.seekTo(currentPosition + seekForwardTime)
+                mp?.seekTo(currentPosition + seekForwardTime)
             } else {
                 // forward to end position
-                mp!!.seekTo(mp!!.duration)
+                mp?.duration?.let { mp?.seekTo(it) }
             }
         }
         if (v === btnBackward) {
-            val currentPosition = mp!!.currentPosition
+            val currentPosition = mp?.currentPosition
             // check if seekBackward time is greater than 0 sec
-            if (currentPosition - seekBackwardTime >= 0) {
+            if (currentPosition!! - seekBackwardTime >= 0) {
                 // forward song
-                mp!!.seekTo(currentPosition - seekBackwardTime)
+                mp?.seekTo(currentPosition - seekBackwardTime)
             } else {
                 // backward to starting position
-                mp!!.seekTo(0)
+                mp?.seekTo(0)
             }
         }
         if (v === btnNext) {
             if (adView != null)
                 UserInterfaceUtils.showBannerAd(adView)
             if (mp != null)
-                mp!!.stop()
+                mp?.stop()
 
             Log.d("btnNext", "indexOfSong_val $indexOfSong")
 
@@ -173,11 +174,11 @@ class MusicPlayerActivity : Activity(), SeekBar.OnSeekBarChangeListener, View.On
 
                 setSongTitle(nextValue)
                 playSongIndex(nextValue)
-                btnPlay!!.setImageResource(R.drawable.btn_pause)
+                btnPlay?.setImageResource(R.drawable.btn_pause)
             } else {
                 setSongTitle(0)
                 playSongIndex(0)
-                btnPlay!!.setImageResource(R.drawable.btn_pause)
+                btnPlay?.setImageResource(R.drawable.btn_pause)
                 indexOfSong = 0
             }
         }
@@ -185,7 +186,7 @@ class MusicPlayerActivity : Activity(), SeekBar.OnSeekBarChangeListener, View.On
             if (adView != null)
                 UserInterfaceUtils.showBannerAd(adView)
             if (mp != null)
-                mp!!.stop()
+                mp?.stop()
 
             Log.d("btnPrevious", "indexOfSong_val $indexOfSong")
 
@@ -199,11 +200,11 @@ class MusicPlayerActivity : Activity(), SeekBar.OnSeekBarChangeListener, View.On
 
                 setSongTitle(preValue)
                 playSongIndex(preValue)
-                btnPlay!!.setImageResource(R.drawable.btn_pause)
+                btnPlay?.setImageResource(R.drawable.btn_pause)
             } else {
                 setSongTitle(15)
                 playSongIndex(15)
-                btnPlay!!.setImageResource(R.drawable.btn_pause)
+                btnPlay?.setImageResource(R.drawable.btn_pause)
                 indexOfSong = 15
             }
         }
@@ -211,13 +212,13 @@ class MusicPlayerActivity : Activity(), SeekBar.OnSeekBarChangeListener, View.On
             if (isRepeat) {
                 isRepeat = false
                 Toast.makeText(applicationContext, "Repeat is OFF", Toast.LENGTH_SHORT).show()
-                btnRepeat!!.setImageResource(R.drawable.btn_repeat)
+                btnRepeat?.setImageResource(R.drawable.btn_repeat)
             } else {
                 // make repeat to true
                 isRepeat = true
                 Toast.makeText(applicationContext, "Repeat is ON", Toast.LENGTH_SHORT).show()
 
-                btnRepeat!!.setImageResource(R.drawable.img_btn_repeat_pressed)
+                btnRepeat?.setImageResource(R.drawable.img_btn_repeat_pressed)
             }
             //Toast.makeText(this, "We will add this feature in next version", Toast.LENGTH_SHORT).show();
 
@@ -228,51 +229,51 @@ class MusicPlayerActivity : Activity(), SeekBar.OnSeekBarChangeListener, View.On
         if (titleIndex == 0) {
 
             img?.setImageResource(R.drawable.album1)
-            tvSongTitle!!.text = "Ekadantaya Vakratundaya"
+            tvSongTitle?.text = "Ekadantaya Vakratundaya"
 
         }
         if (titleIndex == 1) {
             img?.setImageResource(R.drawable.album2)
-            tvSongTitle!!.text = "Sindoor Lal Chadayo"
+            tvSongTitle?.text = "Sindoor Lal Chadayo"
         }
         if (titleIndex == 2) {
             img?.setImageResource(R.drawable.album3)
-            tvSongTitle!!.text = "Sukhkarta Dukhharta "
+            tvSongTitle?.text = "Sukhkarta Dukhharta "
         }
         if (titleIndex == 3) {
             img?.setImageResource(R.drawable.album4)
-            tvSongTitle!!.text = "Lavthavti Vikrala Shankar"
+            tvSongTitle?.text = "Lavthavti Vikrala Shankar"
         }
         if (titleIndex == 4) {
             img?.setImageResource(R.drawable.album_2)
-            tvSongTitle!!.text = "Durge Durghat Bhari"
+            tvSongTitle?.text = "Durge Durghat Bhari"
         }
         if (titleIndex == 5) {
             img?.setImageResource(R.drawable.album6)
-            tvSongTitle!!.text = "Yuge Atthavis"
+            tvSongTitle?.text = "Yuge Atthavis"
         }
         if (titleIndex == 6) {
             img?.setImageResource(R.drawable.album5)
-            tvSongTitle!!.text = "Yei Oh Vitthale"
+            tvSongTitle?.text = "Yei Oh Vitthale"
         }
         if (titleIndex == 7) {
             img?.setImageResource(R.drawable.album1)
-            tvSongTitle!!.text = "Tu Sukhkarta"
+            tvSongTitle?.text = "Tu Sukhkarta"
         }
         if (titleIndex == 8) {
             img?.setImageResource(R.drawable.img11)
-            tvSongTitle!!.text = "Jai Ganesh"
+            tvSongTitle?.text = "Jai Ganesh"
         }
         if (titleIndex == 9) {
             img?.setImageResource(R.drawable.album7)
-            tvSongTitle!!.text = "Om Jai Jagdish Hare"
+            tvSongTitle?.text = "Om Jai Jagdish Hare"
         }
     }
 
     fun playSongIndex(index: Int) {
         if (mp != null) {
-            mp!!.stop()
-            mp!!.release()
+            mp?.stop()
+            mp?.release()
         }
 
         if (index == 0) {
@@ -308,11 +309,11 @@ class MusicPlayerActivity : Activity(), SeekBar.OnSeekBarChangeListener, View.On
         }
 
         if (mp != null) {
-            mp!!.start()
-            mp!!.setOnCompletionListener(this)
-            val totalDuration = mp!!.duration.toLong()
-            songTotalDurationLabel!!.text = utils!!.milliSecondsToTimer(totalDuration)
-            Log.d(TAG, "total_val " + utils!!.milliSecondsToTimer(totalDuration))
+            mp?.start()
+            mp?.setOnCompletionListener(this)
+            val totalDuration = mp?.duration?.toLong()
+            songTotalDurationLabel?.text = totalDuration?.let { utils?.milliSecondsToTimer(it) }
+            Log.d(TAG, "total_val " + totalDuration?.let { utils?.milliSecondsToTimer(it) })
         }
     }
 
@@ -330,11 +331,11 @@ class MusicPlayerActivity : Activity(), SeekBar.OnSeekBarChangeListener, View.On
 
     override fun onStopTrackingTouch(seekBar: SeekBar) {
         mHandler.removeCallbacks(mUpdateTimeTask)
-        val totalDuration = mp!!.duration
-        val currentPosition = utils!!.progressToTimer(seekBar.progress, totalDuration)
+        val totalDuration = mp?.duration
+        val currentPosition = totalDuration?.let { utils?.progressToTimer(seekBar.progress, it) }
 
         // forward or backward to certain seconds
-        mp!!.seekTo(currentPosition)
+        currentPosition?.let { mp?.seekTo(it) }
         // update timer progress again
         updateProgressBar()
     }
@@ -357,11 +358,11 @@ class MusicPlayerActivity : Activity(), SeekBar.OnSeekBarChangeListener, View.On
 
                 setSongTitle(nextValue)
                 playSongIndex(nextValue)
-                btnPlay!!.setImageResource(R.drawable.btn_pause)
+                btnPlay?.setImageResource(R.drawable.btn_pause)
             } else {
                 setSongTitle(0)
                 playSongIndex(0)
-                btnPlay!!.setImageResource(R.drawable.btn_pause)
+                btnPlay?.setImageResource(R.drawable.btn_pause)
                 indexOfSong = 0
             }
         }
@@ -370,7 +371,7 @@ class MusicPlayerActivity : Activity(), SeekBar.OnSeekBarChangeListener, View.On
     companion object {
 
         var mp: MediaPlayer? = null
-        private val TAG = "MainActivity"
+        private val TAG = "MusicPlayerActivity"
     }
 
 
