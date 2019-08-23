@@ -8,6 +8,9 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.calibehr.mitra.utils.SharedPreferencesHelper
+import digispark.tech.ganapatiaarti.base.BaseActivity
+import digispark.tech.ganapatiaarti.constants.Constant
 
 import java.util.ArrayList
 
@@ -18,7 +21,9 @@ class Splash_Screen : Activity() {
 
     internal var handler: Handler? = Handler()
     private val MULTIPLE_PERMISSIONS = 10
-    private val permissions = arrayOf(Manifest.permission.INTERNET, Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.WAKE_LOCK, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
+    private val permissions = arrayOf(Manifest.permission.INTERNET,
+            Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.WAKE_LOCK,
+            Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
 
     internal var r: Runnable = Runnable {
         if (checkPermissions()) {
@@ -30,11 +35,16 @@ class Splash_Screen : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash__screen)
+
+        val sp = SharedPreferencesHelper.getPref(this@Splash_Screen, Constant.SP_LANG_CODE)
+        if (sp!!.isNotEmpty()){
+            Constant.LANG_CODE = sp
+        }
     }
 
     override fun onStart() {
         super.onStart()
-        handler!!.postDelayed(r, 2000)
+        handler?.postDelayed(r, 2000)
     }
 
     private fun determineNavigation() {
@@ -81,7 +91,7 @@ class Splash_Screen : Activity() {
         try {
             finish()
             if (handler != null) {
-                handler!!.removeMessages(0)
+                handler?.removeMessages(0)
             }
         } catch (e: Exception) {
             e.printStackTrace()

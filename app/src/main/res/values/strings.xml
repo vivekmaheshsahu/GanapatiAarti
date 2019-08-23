@@ -1,22 +1,54 @@
 <resources>
     <string name="app_name">Ganapati Aarti</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_settings" translatable="false">Settings</string>
     <string name="title_send_feedback">Send feedback</string>
-    <string name="mail_feedback_email">vivekmaheshsahu@gmail.com</string>
-    <string name="mail_feedback_subject">Feedback on Ganpati Aarti app</string>
+    <string name="mail_feedback_email" translatable="false">vivekmaheshsahu@gmail.com</string>
+    <string name="mail_feedback_subject" translatable="false">Feedback on Ganpati Aarti app</string>
 
-    <string name="action_add_favourite">Add to Favourites</string>
-    <string name="action_play_next">Play Next</string>
-    <string name="backdrop_title">Ganpati Aarti</string>
-    <string name="backdrop_subtitle">This season top 10 Aarti</string>
-    <string name="admob_app_id">ca-app-pub-2609666985136692~4976099823</string>
-    <string name="banner_ad_unit_id">ca-app-pub-2609666985136692/1836801092</string>
-    <string name="interstitial_ad">ca-app-pub-2609666985136692/8678198152</string>
+    <string name="action_add_favourite" translatable="false">Add to Favourites</string>
+    <string name="action_play_next" translatable="false">Play Next</string>
+    <string name="backdrop_title" translatable="false">Ganpati Aarti</string>
+    <string name="backdrop_subtitle" translatable="false">This season top 10 Aarti</string>
+    <string name="admob_app_id" translatable="false">ca-app-pub-2609666985136692~4976099823</string>
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-2609666985136692/1836801092</string>
+    <string name="interstitial_ad" translatable="false">ca-app-pub-2609666985136692/8678198152</string>
 
-    <string name="please_grant_all_permissions">Insufficient privileges. Please grant all permissions.</string>
+    <string name="please_grant_all_permissions" translatable="false">Insufficient privileges. Please grant all permissions.</string>
+
+    <string name="hindi_aarti">Hindi Aarti</string>
+    <string name="marathi_aarti">Marathi Aarti</string>
+    <string name="our_apps">Our Apps</string>
+    <string name="feedback">Feedback</string>
+    <string name="share_app">Share App</string>
+    <string name="update_app">Update App</string>
+    <string name="exit">Exit</string>
+    <string name="disclaimer">Disclaimer</string>
+    <string name="rate_us">Rate Us</string>
+
+    <string name="feedback_suggestions">We would love to know feedback and suggestions. \n\n Thank you.</string>
+    <string name="send_feedback">Send Feedback Via Gmail</string>
+
+
+    <string name="ganesh_bhajan">Ganesh Bhajan</string>
+    <string name="listen_bhajan">Listen Bhajan</string>
+    <string name="mumbai_mandal">Mumbai Mandal</string>
+    <string name="pune_mandal">Pune Mandal</string>
+    <string name="feedback_or_suggestions">Feedback and Suggestions</string>
+    <string name="prasiddh_mandal">Famous Mandals</string>
+
+    <string name="ekadantaya_vakratundaya">Ekadantaya Vakratundaya</string>
+    <string name="sindoor_lal_chadayo">Sindoor Lal Chadhayo</string>
+    <string name="sukhkarta_dukhharta">Sukhkarta Dukhharta</string>
+    <string name="lavthavti_vikrala">Lavthavti Vikrala</string>
+    <string name="durge_durgat_bhari">Durge Durghat Bhari</string>
+    <string name="yuge_atthavis">Yuge Atthavis</string>
+    <string name="yei_o_vitthale">Yei Oh Vitthale</string>
+    <string name="tu_sukhkarta">Tu Sukhkarta</string>
+    <string name="jai_ganesh">Jai Ganesh</string>
+    <string name="om_jai_jagadish">Om Jai Jagdish Hare</string>
 
 
     // testing ids

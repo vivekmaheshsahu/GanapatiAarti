@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
+    <item
+        android:title="Choose Language"
         android:orderInCategory="100"
         app:showAsAction="never" />
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/action_english"
+            android:title="English"
+            android:orderInCategory="200"
+            app:showAsAction="never" />
+        <item android:id="@+id/action_marathi"
+            android:title="मराठी"
+            android:orderInCategory="300"
+            app:showAsAction="never" />
+        <item android:id="@+id/action_hindi"
+            android:title="हिंदी"
+            android:orderInCategory="400"
+            app:showAsAction="never"/>
+    </group>
 </menu>

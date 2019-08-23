@@ -1,6 +1,9 @@
 package digispark.tech.ganapatiaarti
 
+import android.content.Context
 import android.content.Intent
+import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +13,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 
-class AlbumsAdapter(private val albumList: List<Album>) : RecyclerView.Adapter<AlbumsAdapter.MyViewHolder>() {
+class AlbumsAdapter(private val mCtx: Context?, private val albumList: ArrayList<Album>,
+                    private val progressBarInterface: ProgressBarInterface) :
+        RecyclerView.Adapter<AlbumsAdapter.MyViewHolder>() {
 
+    internal var handler = Handler()
+    private var songIndex: Int? = null
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         var title: TextView
@@ -19,19 +26,29 @@ class AlbumsAdapter(private val albumList: List<Album>) : RecyclerView.Adapter<A
 
         init {
             itemView.setOnClickListener(this)
-            this.title = itemView.findViewById<View>(digispark.tech.ganapatiaarti.R.id.title) as TextView
-            this.thumbnail = itemView.findViewById<View>(digispark.tech.ganapatiaarti.R.id.thumbnail) as ImageView
+            this.title = itemView.findViewById<View>(R.id.title) as TextView
+            this.thumbnail = itemView.findViewById<View>(R.id.thumbnail) as ImageView
         }
 
 
         override fun onClick(itemview: View) {
-            val a: Int
-            a = adapterPosition
-            val intent = Intent(itemview.context, MusicPlayerActivity::class.java)
-            intent.putExtra("songindex", a)
-            itemview.context.startActivity(intent)
-
+            progressBarInterface.showProgressBar()
+            if (MusicPlayerActivity.mp != null) {
+                MusicPlayerActivity.mp?.stop()
+                MusicPlayerActivity.mp = null
+            }
+            songIndex = adapterPosition
+            Log.d("test", "position_index $adapterPosition")
+            Log.d("Test", "SongInfo_name " + albumList[adapterPosition].name)
+            handler.postDelayed(r, 900)
         }
+    }
+
+    internal var r: Runnable = Runnable {
+        progressBarInterface.hideProgressBar()
+        val intent = Intent(mCtx, MusicPlayerActivity::class.java)
+        intent.putExtra("songindex", songIndex)
+        mCtx?.startActivity(intent)
     }
 
 
@@ -56,5 +73,9 @@ class AlbumsAdapter(private val albumList: List<Album>) : RecyclerView.Adapter<A
         return albumList.size
     }
 
+    interface ProgressBarInterface{
+        fun showProgressBar()
+        fun hideProgressBar()
+    }
 
 }

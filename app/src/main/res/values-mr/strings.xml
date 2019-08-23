@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">गणपती आरती</string>
+
+    <string name="title_send_feedback">अभिप्राय पाठवा</string>
+
+    <string name="hindi_aarti">हिंदी आरती</string>
+    <string name="marathi_aarti">मराठी आरती</string>
+    <string name="our_apps">आमचे ऐप्स</string>
+    <string name="feedback">अभिप्राय</string>
+    <string name="share_app">ऐप शेयर करा</string>
+    <string name="update_app">ऐप अपडेट करा</string>
+    <string name="exit">बाहेर पडा</string>
+    <string name="disclaimer">अस्वीकरण</string>
+    <string name="rate_us">रेटिंग द्या</string>
+
+    <string name="feedback_suggestions">आम्हाला अभिप्राय आणि सूचना जाणून घेण्यास आवडेल. \n\n धन्यवाद.</string>
+    <string name="send_feedback">Gmail मार्गे अभिप्राय पाठवा</string>
+
+    <string name="ganesh_bhajan">गणेश भजन</string>
+    <string name="listen_bhajan">भजन ऐका</string>
+    <string name="mumbai_mandal">मुंबई मंडळ</string>
+    <string name="pune_mandal">पुणे मंडळ</string>
+    <string name="feedback_or_suggestions">अभिप्राय आणि सूचना</string>
+    <string name="prasiddh_mandal">प्रसिद्ध मंडळ</string>
+
+    <string name="ekadantaya_vakratundaya">एकदंताय वक्रतुंडाय</string>
+    <string name="sindoor_lal_chadayo">सिंदूर लाल चढायो</string>
+    <string name="sukhkarta_dukhharta">सुखहर्ता दुखहर्ता</string>
+    <string name="lavthavti_vikrala">लवथवती विक्राळा</string>
+    <string name="durge_durgat_bhari">दुर्गे दुर्घट भारी</string>
+    <string name="yuge_atthavis">युगे अठ्ठावीस</string>
+    <string name="yei_o_vitthale">येई ओ विठ्ठले</string>
+    <string name="tu_sukhkarta">तु सुखकर्ता</string>
+    <string name="jai_ganesh">जय गणेश</string>
+    <string name="om_jai_jagadish">ओम जय जगदीश हरे</string>
+</resources>

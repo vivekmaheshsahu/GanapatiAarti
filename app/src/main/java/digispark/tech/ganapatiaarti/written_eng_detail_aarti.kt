@@ -37,7 +37,7 @@ class written_eng_detail_aarti : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         adView = findViewById(R.id.adView)
-        UserInterfaceUtils.showBannerAd(adView)
+        UserInterfaceUtils.loadAd(adView)
 
         intValue = intent.getIntExtra("songindex", 0)
         val t1: TextView

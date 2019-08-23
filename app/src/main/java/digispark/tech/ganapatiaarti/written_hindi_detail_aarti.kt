@@ -42,7 +42,7 @@ class written_hindi_detail_aarti : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         adView = findViewById(R.id.adView)
-        UserInterfaceUtils.showBannerAd(adView)
+        UserInterfaceUtils.loadAd(adView)
 
         t1 = findViewById<View>(R.id.txt) as TextView
         t2 = findViewById<View>(R.id.t1) as TextView

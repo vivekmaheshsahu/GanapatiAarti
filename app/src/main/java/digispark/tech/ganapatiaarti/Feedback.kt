@@ -34,7 +34,6 @@ class Feedback : AppCompatActivity(), View.OnClickListener {
         btn_feedback!!.setOnClickListener(this)
 
         adView = findViewById<View>(R.id.adView) as AdView
-        UserInterfaceUtils.showBannerAd(adView)
     }
 
     override fun onClick(v: View) {

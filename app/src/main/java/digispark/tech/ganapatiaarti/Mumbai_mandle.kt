@@ -35,7 +35,6 @@ class Mumbai_mandle : AppCompatActivity() {
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         adView = findViewById(R.id.adView)
-        UserInterfaceUtils.showBannerAd(adView)
         recyclerView = findViewById<View>(R.id.recycler_view) as RecyclerView
         albumList = ArrayList()
         adapter = AlbumsAdapter_mandal(albumList!!)

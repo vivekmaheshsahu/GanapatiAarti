@@ -1,65 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/start"
-            android:icon="@android:drawable/ic_media_ff"
-            android:title="गणेश भजन"/>
+            android:id="@+id/navMusic"
+            android:icon="@drawable/ic_music_24px"
+            android:title="@string/ganesh_bhajan"/>
         <item
-            android:id="@+id/hindi_aarti"
-            android:icon="@android:drawable/ic_menu_agenda"
-            android:title="हिंदी और मराठी आरती" />
+            android:id="@+id/navHinAartiEng"
+            android:icon="@drawable/ic_text_24px"
+            android:title="@string/hindi_aarti"/>
         <item
-            android:id="@+id/English_aarti"
-            android:icon="@android:drawable/ic_menu_agenda"
-            android:title="English Aarti" />
+            android:id="@+id/navMarAartiEng"
+            android:icon="@drawable/ic_text_24px"
+            android:title="@string/marathi_aarti"/>
 
     </group>
 
-    <item android:title="प्रसिद्ध मंडल">
+    <item android:title="@string/prasiddh_mandal">
         <menu>
             <item
-                android:id="@+id/mumbai_mandle"
+                android:id="@+id/navMumbaiMandle"
                 android:icon="@android:drawable/ic_menu_directions"
-                android:title="मुंबई मंडल" />
+                android:title="@string/mumbai_mandal"/>
             <item
-                android:id="@+id/pune"
+                android:id="@+id/navPuneMandle"
                 android:icon="@android:drawable/ic_menu_directions"
-                android:title="पुणे मंडल" />
+                android:title="@string/pune_mandal" />
         </menu>
     </item>
     <group android:checkableBehavior="single"
         android:id="@+id/group1">
 
         <item
-            android:id="@+id/exit"
-            app:itemTextAppearance="?android:attr/textAppearanceMedium"
-            android:icon="@android:drawable/ic_menu_close_clear_cancel"
-            android:title="बाहर जाएं" />
-
-        <item android:id="@+id/share"
-            android:icon="@android:drawable/ic_menu_send"
-            android:title="Share"
-            app:itemTextAppearance="?android:attr/textAppearanceMedium"
-            />
-
-    <item android:id="@+id/feedback"
-        android:icon="@android:drawable/ic_menu_myplaces"
-        app:itemTextAppearance="?android:attr/textAppearanceMedium"
-        android:title="Feedback"
-        />
-
-    <item android:id="@+id/update"
-        app:itemTextAppearance="?android:attr/textAppearanceMedium"
-        android:icon="@android:drawable/ic_menu_info_details"
-        android:title="Update app"
-        />
-        <item android:id="@+id/Disclaimer"
-            app:itemTextAppearance="?android:attr/textAppearanceMedium"
-            android:icon="@android:drawable/ic_menu_help"
-            android:title="Disclaimer"
-            />
+            android:id="@+id/navOurApps"
+            android:icon="@drawable/ic_more_apps_24px"
+            android:title="@string/our_apps"/>
+        <item
+            android:id="@+id/navExit"
+            android:icon="@drawable/ic_exit_24px"
+            android:title="@string/exit"/>
+        <item
+            android:id="@+id/navRateUs"
+            android:icon="@drawable/ic_rate_us_24px"
+            android:title="@string/rate_us"/>
+        <item
+            android:id="@+id/navDisclaimer"
+            android:icon="@drawable/ic_disclaimer_24px"
+            android:title="@string/disclaimer"/>
+        <item
+            android:id="@+id/navShare"
+            android:icon="@drawable/ic_menu_share"
+            android:title="@string/share_app"/>
+        <item
+            android:id="@+id/navFeedback"
+            android:icon="@drawable/ic_feedback_24px"
+            android:title="@string/feedback"/>
+        <item
+            android:id="@+id/navUpdate"
+            android:icon="@drawable/ic_update_24px"
+            android:title="@string/update_app"/>
     </group>
 </menu>

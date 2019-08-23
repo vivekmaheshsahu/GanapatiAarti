@@ -1,89 +1,76 @@
 package digispark.tech.ganapatiaarti
 
-import android.content.DialogInterface
 import android.content.Intent
-import android.content.res.Resources
-import android.graphics.Rect
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.util.TypedValue
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-
+import androidx.fragment.app.Fragment
+import com.calibehr.mitra.utils.SharedPreferencesHelper
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.InterstitialAd
-import com.google.android.gms.analytics.HitBuilders
+import com.google.android.gms.analytics.GoogleAnalytics
 import com.google.android.gms.analytics.Tracker
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.analytics.FirebaseAnalytics
-
-import java.util.ArrayList
-
+import digispark.tech.ganapatiaarti.base.BaseActivity
 import digispark.tech.ganapatiaarti.constants.Constant
 import digispark.tech.ganapatiaarti.firebase.NotificationHelper
-import digispark.tech.ganapatiaarti.utils.UserInterfaceUtils
+import digispark.tech.ganapatiaarti.fragments.*
+import digispark.tech.ganapatiaarti.utils.DeviceDetails
 
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-    private var recyclerView: RecyclerView? = null
-    private var adapter: AlbumsAdapter? = null
-    private var albumList: MutableList<Album>? = null
+class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    internal val TAG = MainActivity::class.java.simpleName
     private var mFirebaseAnalytics: FirebaseAnalytics? = null
     private var mInterstitialAd: InterstitialAd? = null
-    private var adView: AdView? = null
-    private var mTracker: Tracker? = null
+
+    companion object {
+        lateinit var analytics: GoogleAnalytics
+        lateinit var tracker: Tracker
+    }
+
+    override fun provideLayoutId(): Int {
+        return R.layout.activity_main
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        // Obtain the FirebaseAnalytics instance.
+
         val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
 
         val drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
         val toggle = ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawer.setDrawerListener(toggle)
+        drawer.addDrawerListener(toggle)
         toggle.syncState()
 
-        val navigationView = findViewById<View>(R.id.nav_view) as NavigationView
-        navigationView.setNavigationItemSelectedListener(this)
-
-        val application = application as MyApplication
-        mTracker = application.defaultTracker
-
-        Log.i("MainActivity", "MainActivity screen name: ")
-        mTracker!!.setScreenName("Activity Name " + "Main Activity")
-        mTracker!!.send(HitBuilders.ScreenViewBuilder().build())
-
-        mTracker!!.send(HitBuilders.EventBuilder()
-                .setCategory("Action")
-                .setAction("Share")
-                .build())
-
-        // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this)
+        analytics = GoogleAnalytics.getInstance(this)
+        /*analytics.setLocalDispatchPeriod(1800)
+        tracker = analytics.newTracker("UA-88365539-1")
+        tracker.enableExceptionReporting(true)
+        tracker.enableAdvertisingIdCollection(true)
+        tracker.enableAutoActivityTracking(true)*/
 
-        adView = findViewById(R.id.adView)
-        UserInterfaceUtils.showBannerAd(adView)
 
         mInterstitialAd = InterstitialAd(this)
-        mInterstitialAd!!.adUnitId = getString(R.string.interstitial_ad)
-        mInterstitialAd!!.loadAd(AdRequest.Builder().build())
-        mInterstitialAd!!.adListener = object : AdListener() {
+        mInterstitialAd?.adUnitId = getString(R.string.interstitial_ad)
+        loadAd()
+        mInterstitialAd?.adListener = object : AdListener() {
             override fun onAdLoaded() {
                 // Code to be executed when an ad finishes loading.
                 Log.i("Ads", "onAdLoaded")
@@ -108,28 +95,89 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 // Code to be executed when when the interstitial ad is closed.
                 Log.i("Ads", "onAdClosed")
                 // load next ad
-                mInterstitialAd!!.loadAd(AdRequest.Builder().build())
+                loadAd()
             }
         }
 
-        recyclerView = findViewById<View>(R.id.recycler_view) as RecyclerView
+        val navigationView = findViewById<View>(R.id.nav_view) as NavigationView
+        navigationView.setNavigationItemSelectedListener(this)
+        navigationView.itemIconTintList = null
+        navigationView.setCheckedItem(R.id.navMusic)
+        displaySelectedScreen(R.id.navMusic)
+    }
 
-        albumList = ArrayList()
-        adapter = AlbumsAdapter(albumList!!)
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+        val english = menu?.getItem(1)
+        val marathi = menu?.getItem(2)
+        val hindi = menu?.getItem(3)
+        if (Constant.LANG_CODE.equals("en")){
+            english?.setChecked(true)
+        }else if (Constant.LANG_CODE.equals("mr")){
+            marathi?.setChecked(true)
+        }else if (Constant.LANG_CODE.equals("hi")){
+            hindi?.setChecked(true)
+        }
+        return true
+    }
 
-        val mLayoutManager = GridLayoutManager(this, 2)
-        recyclerView!!.layoutManager = mLayoutManager
-        recyclerView!!.addItemDecoration(GridSpacingItemDecoration(2, dpToPx(10), true))
-        recyclerView!!.itemAnimator = DefaultItemAnimator()
-        recyclerView!!.adapter = adapter
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.action_english ->{
+                if (item.isChecked())
+                    item.setChecked(false)
+                else
+                    item.setChecked(true)
 
-        prepareAlbums()
+                Constant.LANG_CODE = "en"
+                SharedPreferencesHelper.addPref(this@MainActivity, Constant.SP_LANG_CODE, Constant.LANG_CODE)
+                startActivity(Intent(this@MainActivity, MainActivity::class.java))
+            }
+            R.id.action_marathi -> {
+                if (item.isChecked())
+                    item.setChecked(false)
+                else
+                    item.setChecked(true)
 
+                Constant.LANG_CODE = "mr"
+                SharedPreferencesHelper.addPref(this@MainActivity, Constant.SP_LANG_CODE, Constant.LANG_CODE)
+                startActivity(Intent(this@MainActivity, MainActivity::class.java))
+            }
+            R.id.action_hindi -> {
+                if (item.isChecked())
+                    item.setChecked(false)
+                else
+                    item.setChecked(true)
+
+                Constant.LANG_CODE = "hi"
+                SharedPreferencesHelper.addPref(this@MainActivity, Constant.SP_LANG_CODE, Constant.LANG_CODE)
+                startActivity(Intent(this@MainActivity, MainActivity::class.java))
+            }
+            else -> {
+                return super.onOptionsItemSelected(item)
+            }
+        }
+
+        if (MusicPlayerActivity.mp != null) {
+            MusicPlayerActivity.mp?.stop()
+            MusicPlayerActivity.mp?.release()
+            MusicPlayerActivity.mp = null
+        }
+        Constant.NOW_PLAYING_SONG_NAME = ""
+
+        return true
+
+    }
+
+    fun loadAd(){
+        val adRequest = AdRequest.Builder()
+                //.addTestDevice("FD9F133038F995D8A876271BC9EBFCC0")
+                .build()
+        mInterstitialAd?.loadAd(adRequest)
     }
 
     override fun onResume() {
         super.onResume()
-
         NotificationHelper.clearNotifications(this)
     }
 
@@ -138,140 +186,119 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (drawer.isDrawerOpen(GravityCompat.START))
             drawer.closeDrawer(GravityCompat.START)
         else {
-            if (mInterstitialAd!!.isLoaded)
-                mInterstitialAd!!.show()
+            if (mInterstitialAd?.isLoaded!!)
+                mInterstitialAd?.show()
         }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
-        val id = item.itemId
-
-        if (id == R.id.hindi_aarti) {
-            val intent = Intent(this@MainActivity, written_aarti_hindi::class.java)
-            startActivity(intent)
-            // Handle the camera action
-        } else if (id == R.id.English_aarti) {
-            val intent = Intent(this@MainActivity, Written_aarti_english::class.java)
-            startActivity(intent)
-
-        } else if (id == R.id.mumbai_mandle) {
-            val intent = Intent(this@MainActivity, Mumbai_mandle::class.java)
-            startActivity(intent)
-        } else if (id == R.id.pune) {
-            val intent = Intent(this@MainActivity, pune_mandle::class.java)
-            startActivity(intent)
-        } else if (id == R.id.Disclaimer) {
-            val intent = Intent(this@MainActivity, Disclaimer::class.java)
-            startActivity(intent)
-        } else if (id == R.id.share) {
-            val sendIntent = Intent()
-            sendIntent.action = Intent.ACTION_SEND
-            sendIntent.putExtra(Intent.EXTRA_TEXT, Constant.PLAY_STORE_LINK)
-
-            sendIntent.type = "text/plain"
-            startActivity(sendIntent)
-        } else if (id == R.id.feedback) {
-            val intent = Intent(this@MainActivity, Feedback::class.java)
-            startActivity(intent)
-        } else if (id == R.id.update) {
-
-            val uri = Uri.parse(Constant.PLAY_STORE_LINK)
-            val goToMarket = Intent(Intent.ACTION_VIEW, uri)
-
-            // After pressing back button from google play will continue to app
-            goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_CLEAR_TASK or
-                    Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
-
-            startActivity(goToMarket)
-        } else if (id == R.id.exit) {
-            if (MusicPlayerActivity.mp != null) {
-                MusicPlayerActivity.mp?.stop()
-                MusicPlayerActivity.mp?.release()
-                MusicPlayerActivity.mp = null
-            }
-            val exitIntent = Intent(Intent.ACTION_MAIN)
-            exitIntent.addCategory(Intent.CATEGORY_HOME)
-            exitIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(exitIntent)
-            finish()
-        }
-
-
-        val drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
-        drawer.closeDrawer(GravityCompat.START)
+        displaySelectedScreen(item.itemId)
         return true
     }
 
+    private fun displaySelectedScreen(itemId: Int) {
+        var fragment: Fragment? = null
 
-    private fun prepareAlbums() {
-        val covers = intArrayOf(R.drawable.album1, R.drawable.album2, R.drawable.album3, R.drawable.album4, R.drawable.album_2, R.drawable.album6, R.drawable.album5, R.drawable.album1, R.drawable.img11, R.drawable.album7)
+        when (itemId) {
+            R.id.navMusic ->{
+                supportActionBar?.title = applicationContext.resources.getString(R.string.listen_bhajan)
+                fragment = HomeFragment()
+            }
 
-        var a = Album("ekadantaya_vakratundaya", 13, covers[0])
-        albumList?.add(a)
-
-        a = Album("Sindoor Lal Chadayo", 8, covers[1])
-        albumList?.add(a)
-
-        a = Album("Sukhkarta Dukhharta", 11, covers[2])
-        albumList?.add(a)
-
-        a = Album("Lavthavti Vikrala", 12, covers[3])
-        albumList?.add(a)
-
-        a = Album("Durge Durghat Bhari", 14, covers[4])
-        albumList?.add(a)
-
-        a = Album("Yuge Atthavis", 1, covers[5])
-        albumList?.add(a)
-
-        a = Album("Yei Oh Vitthale", 11, covers[6])
-        albumList?.add(a)
-
-        a = Album("Tu Sukhkarta Tu Dukhharta", 14, covers[7])
-        albumList?.add(a)
-
-        a = Album("Jai Ganesh Jai Ganesh", 11, covers[8])
-        albumList?.add(a)
-
-        a = Album("Om Jai Jagdish Hare", 17, covers[9])
-        albumList?.add(a)
-
-        adapter?.notifyDataSetChanged()
-    }
-
-
-    inner class GridSpacingItemDecoration(private val spanCount: Int, private val spacing: Int, private val includeEdge: Boolean) : RecyclerView.ItemDecoration() {
-
-        override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-            val position = parent.getChildAdapterPosition(view) // item position
-            val column = position % spanCount // item column
-
-            if (includeEdge) {
-                outRect.left = spacing - column * spacing / spanCount // spacing - column * ((1f / spanCount) * spacing)
-                outRect.right = (column + 1) * spacing / spanCount // (column + 1) * ((1f / spanCount) * spacing)
-
-                if (position < spanCount) { // top edge
-                    outRect.top = spacing
+            R.id.navHinAartiEng -> {
+                supportActionBar?.title = applicationContext.resources.getString(R.string.hindi_aarti)
+                if (Constant.LANG_CODE.equals("en")){
+                    Constant.LANGUAGE = "hindi"
                 }
-                outRect.bottom = spacing // item bottom
-            } else {
-                outRect.left = column * spacing / spanCount // column * ((1f / spanCount) * spacing)
-                outRect.right = spacing - (column + 1) * spacing / spanCount // spacing - (column + 1) * ((1f /    spanCount) * spacing)
-                if (position >= spanCount) {
-                    outRect.top = spacing // item top
+                else
+                    Constant.LANGUAGE = "हिंदी"
+
+                fragment = AartiFragment()
+            }
+
+            R.id.navMarAartiEng -> {
+                supportActionBar?.title = applicationContext.resources.getString(R.string.marathi_aarti)
+                if (Constant.LANG_CODE.equals("en")){
+                    Constant.LANGUAGE = "marathi"
                 }
+                else
+                    Constant.LANGUAGE = "मराठी"
+                fragment = AartiFragment()
+            }
+
+            R.id.navMumbaiMandle -> {
+                supportActionBar?.title = applicationContext.resources.getString(R.string.mumbai_mandal)
+                fragment = MandalFragment()
+            }
+
+            R.id.navPuneMandle -> {
+                supportActionBar?.title = applicationContext.resources.getString(R.string.pune_mandal)
+                fragment = MandalFragment()
+            }
+
+            R.id.navOurApps -> {
+                goToPlayStore(Constant.OUR_APPS_LINK)
+            }
+
+            R.id.navShare -> {
+                val sendIntent = Intent()
+                sendIntent.action = Intent.ACTION_SEND
+                sendIntent.putExtra(Intent.EXTRA_TEXT, Constant.PLAY_STORE_LINK)
+                sendIntent.type = "text/plain"
+                startActivity(sendIntent)
+            }
+
+            R.id.navFeedback -> {
+                supportActionBar?.title = applicationContext.resources.getString(R.string.feedback_or_suggestions)
+                fragment = FeedbackFragment()
+            }
+
+            R.id.navUpdate -> {
+                goToPlayStore(Constant.PLAY_STORE_LINK)
+            }
+
+            R.id.navExit -> {
+                if (MusicPlayerActivity.mp != null) {
+                    MusicPlayerActivity.mp?.stop()
+                    MusicPlayerActivity.mp?.release()
+                    MusicPlayerActivity.mp = null
+                }
+                Constant.NOW_PLAYING_SONG_NAME = ""
+                val exitIntent = Intent(Intent.ACTION_MAIN)
+                exitIntent.addCategory(Intent.CATEGORY_HOME)
+                exitIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(exitIntent)
+                finish()
+            }
+
+            R.id.navRateUs ->{
+                goToPlayStore(Constant.PLAY_STORE_LINK)
+            }
+
+            R.id.navDisclaimer -> {
+                supportActionBar?.title = applicationContext.resources.getString(R.string.disclaimer)
+                fragment = DisclaimerFragment()
             }
         }
+        if (fragment != null) {
+            val ft = supportFragmentManager.beginTransaction()
+            ft.replace(R.id.content_home, fragment)
+            ft.commit()
+        }
+        val drawer = findViewById(R.id.drawer_layout) as DrawerLayout
+        drawer.closeDrawer(GravityCompat.START)
     }
 
-    /**
-     * Converting dp to pixel
-     */
-    private fun dpToPx(dp: Int): Int {
-        val r = resources
-        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(), r.displayMetrics))
+    fun goToPlayStore(strLink: String){
+        val uri = Uri.parse(strLink)
+        val goToMarket = Intent(Intent.ACTION_VIEW, uri)
+        // After pressing back button from google play will continue to app
+        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_CLEAR_TASK or
+                Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
+        startActivity(goToMarket)
     }
 
-
+    override fun onDestroy() {
+        super.onDestroy()
+    }
 }

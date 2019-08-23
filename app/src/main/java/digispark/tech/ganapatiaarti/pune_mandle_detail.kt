@@ -24,7 +24,7 @@ class pune_mandle_detail : AppCompatActivity() {
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         adView = findViewById(R.id.adView)
-        UserInterfaceUtils.showBannerAd(adView)
+        UserInterfaceUtils.loadAd(adView)
 
         val intent = intent
         val intValue = intent.getIntExtra("songindex", 0)
