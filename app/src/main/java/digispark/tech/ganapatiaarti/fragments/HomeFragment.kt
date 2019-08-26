@@ -122,8 +122,8 @@ class HomeFragment : Fragment(), AlbumsAdapter.ProgressBarInterface, View.OnClic
                     showPlayButton(true)
                 }
                 val playingSongName = viewRoot?.findViewById<TextView>(R.id.playingSongName)
-                playingSongName?.setText(String.format(Locale.US, "%s %s",
-                        "Now playing: ", Constant.NOW_PLAYING_SONG_NAME))
+                playingSongName?.setText(String.format(Locale.US, "%s: %s",
+                        resources.getString(R.string.now_playing), Constant.NOW_PLAYING_SONG_NAME))
                 playingSongName?.isSelected = true
             }
             playingLayout?.setOnClickListener(this)

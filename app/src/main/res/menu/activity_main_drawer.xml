@@ -21,11 +21,11 @@
         <menu>
             <item
                 android:id="@+id/navMumbaiMandle"
-                android:icon="@android:drawable/ic_menu_directions"
+                android:icon="@drawable/ic_directions_24dp"
                 android:title="@string/mumbai_mandal"/>
             <item
                 android:id="@+id/navPuneMandle"
-                android:icon="@android:drawable/ic_menu_directions"
+                android:icon="@drawable/ic_directions_24dp"
                 android:title="@string/pune_mandal" />
         </menu>
     </item>

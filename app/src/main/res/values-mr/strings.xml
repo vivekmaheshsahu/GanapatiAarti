@@ -24,6 +24,25 @@
     <string name="feedback_or_suggestions">अभिप्राय आणि सूचना</string>
     <string name="prasiddh_mandal">प्रसिद्ध मंडळ</string>
 
+    <string name="gsb_seva_kings_circle">जी एस बी सेवा किंग्स सर्कल</string>
+    <string name="lalbaugcha_raja">लालबागचा राजा</string>
+    <string name="ganesh_galli">गणेश गल्ली मुंबईचा राजा</string>
+    <string name="chinchpoklicha_chintamani">चिंचपोकळीचा चिंतामणी</string>
+    <string name="chembur_raja">चेंबूरचा राजा</string>
+    <string name="khetwadi_ganraj">खेतवाडी गणराज</string>
+    <string name="andhericha_raja">अंधेरीचा राजा</string>
+
+    <string name="now_playing">आता गाणे</string>
+
+    <string name="shrimant_dagdusheth_halwai">श्रीमंत दगडूशेठ हलवाई गणपती</string>
+    <string name="rajarshi_shahu_chowk">राजश्री शाहू चौक गणेशोत्सव मंडळ</string>
+    <string name="tambadi_jogeshwari">तांबडी जोगेश्वरी गणपती मंडळ</string>
+    <string name="hutatma_babu_genu">हुतात्मा बाबू गेनू गणेश मंडळ</string>
+    <string name="manadai_ganeshotsav_mandal">मंडई गणेशोत्सव मंडळ</string>
+    <string name="tulshibag_sarvajanik">तुलसीबाग सार्वजनिक गणेशोत्सव मंडळ</string>
+    <string name="guruji_talim_ganapati">गुरूजी तालीम गणपती</string>
+    <string name="hatti_ganapati">हत्ती गणपती सार्वजनिक मंडळ</string>
+
     <string name="ekadantaya_vakratundaya">एकदंताय वक्रतुंडाय</string>
     <string name="sindoor_lal_chadayo">सिंदूर लाल चढायो</string>
     <string name="sukhkarta_dukhharta">सुखहर्ता दुखहर्ता</string>
@@ -32,6 +51,6 @@
     <string name="yuge_atthavis">युगे अठ्ठावीस</string>
     <string name="yei_o_vitthale">येई ओ विठ्ठले</string>
     <string name="tu_sukhkarta">तु सुखकर्ता</string>
-    <string name="jai_ganesh">जय गणेश</string>
+    <string name="jai_ganesh">जय गणेश जय गणेश देवा</string>
     <string name="om_jai_jagadish">ओम जय जगदीश हरे</string>
 </resources>

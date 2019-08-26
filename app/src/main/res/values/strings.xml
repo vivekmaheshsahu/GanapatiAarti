@@ -50,6 +50,24 @@
     <string name="jai_ganesh">Jai Ganesh</string>
     <string name="om_jai_jagadish">Om Jai Jagdish Hare</string>
 
+    <string name="gsb_seva_kings_circle">GSB Seva Kings Circle</string>
+    <string name="lalbaugcha_raja">Lalbaug cha Raja</string>
+    <string name="ganesh_galli">Ganesh Galli Mumbaicha Raja</string>
+    <string name="chinchpoklicha_chintamani">Chinchpokli cha Chintamani</string>
+    <string name="chembur_raja">Chembur Raja</string>
+    <string name="khetwadi_ganraj">Khetwadi Ganraj</string>
+    <string name="andhericha_raja">Andheri cha Raja</string>
+
+    <string name="shrimant_dagdusheth_halwai">Shrimant Dagdusheth Halwai Ganapati</string>
+    <string name="rajarshi_shahu_chowk">Rajarshi Shahu Chowk Ganeshotsav Mandal</string>
+    <string name="tambadi_jogeshwari">Tambadi Jogeshwari Ganapati Mandal</string>
+    <string name="hutatma_babu_genu">Hutatma Babu Genu Ganesh Mandal</string>
+    <string name="manadai_ganeshotsav_mandal">Mandai Ganeshotsav Mandal</string>
+    <string name="tulshibag_sarvajanik">Tulshibag Sarvajanik Ganeshotsav Mandal</string>
+    <string name="guruji_talim_ganapati">Guruji Talim Ganapati</string>
+    <string name="hatti_ganapati">Hatti Ganpati Sarvajanik Mandal</string>
+
+    <string name="now_playing">Now Playing</string>
 
     // testing ids
     <!--<string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>-->

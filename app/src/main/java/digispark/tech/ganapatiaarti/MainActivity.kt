@@ -201,12 +201,12 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         when (itemId) {
             R.id.navMusic ->{
-                supportActionBar?.title = applicationContext.resources.getString(R.string.listen_bhajan)
+                supportActionBar?.title = resources.getString(R.string.listen_bhajan)
                 fragment = HomeFragment()
             }
 
             R.id.navHinAartiEng -> {
-                supportActionBar?.title = applicationContext.resources.getString(R.string.hindi_aarti)
+                supportActionBar?.title = resources.getString(R.string.hindi_aarti)
                 if (Constant.LANG_CODE.equals("en")){
                     Constant.LANGUAGE = "hindi"
                 }
@@ -217,7 +217,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
 
             R.id.navMarAartiEng -> {
-                supportActionBar?.title = applicationContext.resources.getString(R.string.marathi_aarti)
+                supportActionBar?.title = resources.getString(R.string.marathi_aarti)
                 if (Constant.LANG_CODE.equals("en")){
                     Constant.LANGUAGE = "marathi"
                 }
@@ -227,12 +227,14 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
 
             R.id.navMumbaiMandle -> {
-                supportActionBar?.title = applicationContext.resources.getString(R.string.mumbai_mandal)
+                supportActionBar?.title = resources.getString(R.string.mumbai_mandal)
+                Constant.LANGUAGE = "mumbai"
                 fragment = MandalFragment()
             }
 
             R.id.navPuneMandle -> {
-                supportActionBar?.title = applicationContext.resources.getString(R.string.pune_mandal)
+                supportActionBar?.title = resources.getString(R.string.pune_mandal)
+                Constant.LANGUAGE = "pune"
                 fragment = MandalFragment()
             }
 
@@ -249,7 +251,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
 
             R.id.navFeedback -> {
-                supportActionBar?.title = applicationContext.resources.getString(R.string.feedback_or_suggestions)
+                supportActionBar?.title = resources.getString(R.string.feedback_or_suggestions)
                 fragment = FeedbackFragment()
             }
 
@@ -276,7 +278,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
 
             R.id.navDisclaimer -> {
-                supportActionBar?.title = applicationContext.resources.getString(R.string.disclaimer)
+                supportActionBar?.title = resources.getString(R.string.disclaimer)
                 fragment = DisclaimerFragment()
             }
         }

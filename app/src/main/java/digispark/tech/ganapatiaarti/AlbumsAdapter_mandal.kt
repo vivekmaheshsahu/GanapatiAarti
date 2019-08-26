@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 import androidx.recyclerview.widget.RecyclerView
+import digispark.tech.ganapatiaarti.activities.MandalDetailActivity
 
 
 class AlbumsAdapter_mandal(private val albumList: List<Album>) : RecyclerView.Adapter<AlbumsAdapter_mandal.MyViewHolder>() {
@@ -24,10 +25,8 @@ class AlbumsAdapter_mandal(private val albumList: List<Album>) : RecyclerView.Ad
 
 
         override fun onClick(itemview: View) {
-            val a: Int
-            a = position
-            val intent = Intent(itemview.context, Mumbai_mandle_detail::class.java)
-            intent.putExtra("songindex", a)
+            val intent = Intent(itemview.context, MandalDetailActivity::class.java)
+            intent.putExtra("songindex", adapterPosition)
             itemview.context.startActivity(intent)
 
         }

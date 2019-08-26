@@ -243,52 +243,52 @@ class MusicPlayerActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
 
         when (index) {
             0 -> {
-                supportActionBar?.title = applicationContext.resources.getString(R.string.ekadantaya_vakratundaya)
+                supportActionBar?.title = resources.getString(R.string.ekadantaya_vakratundaya)
                 img?.setImageResource(R.drawable.album1)
                 mp = MediaPlayer.create(this, R.raw.ekadantaya_vakratundaya)
             }
             1 -> {
-                supportActionBar?.title = applicationContext.resources.getString(R.string.sindoor_lal_chadayo)
+                supportActionBar?.title = resources.getString(R.string.sindoor_lal_chadayo)
                 img?.setImageResource(R.drawable.album2)
                 mp = MediaPlayer.create(this, R.raw.sindoor_lal_chadayo)
             }
             2 -> {
-                supportActionBar?.title = applicationContext.resources.getString(R.string.sukhkarta_dukhharta)
+                supportActionBar?.title = resources.getString(R.string.sukhkarta_dukhharta)
                 img?.setImageResource(R.drawable.album3)
                 mp = MediaPlayer.create(this, R.raw.sukhkarta_dukhharta)
             }
             3 -> {
-                supportActionBar?.title = applicationContext.resources.getString(R.string.lavthavti_vikrala)
+                supportActionBar?.title = resources.getString(R.string.lavthavti_vikrala)
                 img?.setImageResource(R.drawable.album4)
                 mp = MediaPlayer.create(this, R.raw.lavthavti_vikrala)
             }
             4 -> {
-                supportActionBar?.title = applicationContext.resources.getString(R.string.durge_durgat_bhari)
+                supportActionBar?.title = resources.getString(R.string.durge_durgat_bhari)
                 img?.setImageResource(R.drawable.album_2)
                 mp = MediaPlayer.create(this, R.raw.durge_durghat_bhari)
             }
             5 -> {
-                supportActionBar?.title = applicationContext.resources.getString(R.string.yuge_atthavis)
+                supportActionBar?.title = resources.getString(R.string.yuge_atthavis)
                 img?.setImageResource(R.drawable.album6)
                 mp = MediaPlayer.create(this, R.raw.yuge_atthavis)
             }
             6 -> {
-                supportActionBar?.title = applicationContext.resources.getString(R.string.yei_o_vitthale)
+                supportActionBar?.title = resources.getString(R.string.yei_o_vitthale)
                 img?.setImageResource(R.drawable.album5)
                 mp = MediaPlayer.create(this, R.raw.yei_oh_vitthale)
             }
             7 -> {
-                supportActionBar?.title = applicationContext.resources.getString(R.string.tu_sukhkarta)
+                supportActionBar?.title = resources.getString(R.string.tu_sukhkarta)
                 img?.setImageResource(R.drawable.album1)
                 mp = MediaPlayer.create(this, R.raw.tu_sukhkarta_tu_dukhharta)
             }
             8 -> {
-                supportActionBar?.title = applicationContext.resources.getString(R.string.jai_ganesh)
+                supportActionBar?.title = resources.getString(R.string.jai_ganesh)
                 img?.setImageResource(R.drawable.img11)
                 mp = MediaPlayer.create(this, R.raw.jai_ganesh_jai_ganesh)
             }
             9 -> {
-                supportActionBar?.title = applicationContext.resources.getString(R.string.om_jai_jagadish)
+                supportActionBar?.title = resources.getString(R.string.om_jai_jagadish)
                 img?.setImageResource(R.drawable.album7)
                 mp = MediaPlayer.create(this, R.raw.om_ai_jagdish_hare)
             }
