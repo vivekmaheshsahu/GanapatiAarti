@@ -9,9 +9,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import digispark.tech.ganapatiaarti.R
 import digispark.tech.ganapatiaarti.ShowAartiActivity
-import digispark.tech.ganapatiaarti.pojo.AlbumNew
+import digispark.tech.ganapatiaarti.pojo.AartiPojo
 
-class AartiAdapter(private val albumList: ArrayList<AlbumNew>) : RecyclerView.Adapter<AartiAdapter.MyViewHolder>() {
+class AartiAdapter(private val albumList: ArrayList<AartiPojo>) : RecyclerView.Adapter<AartiAdapter.MyViewHolder>() {
 
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
@@ -40,7 +40,7 @@ class AartiAdapter(private val albumList: ArrayList<AlbumNew>) : RecyclerView.Ad
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.list_view_aarti, parent, false)
+                .inflate(R.layout.aarti_list_item, parent, false)
 
         return MyViewHolder(view)
     }

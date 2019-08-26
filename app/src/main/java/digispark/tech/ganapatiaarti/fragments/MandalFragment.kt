@@ -9,9 +9,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.google.android.gms.ads.AdView
-import digispark.tech.ganapatiaarti.Album
-import digispark.tech.ganapatiaarti.AlbumsAdapter_mandal
-import digispark.tech.ganapatiaarti.MyAdapter
+import digispark.tech.ganapatiaarti.MusicPojo
+import digispark.tech.ganapatiaarti.MandalsAdapter
+import digispark.tech.ganapatiaarti.MyPagerAdapter
 
 import digispark.tech.ganapatiaarti.R
 import digispark.tech.ganapatiaarti.constants.Constant
@@ -24,8 +24,8 @@ class MandalFragment : Fragment() {
 
     private var adView: AdView? = null
     private var rvMandal: RecyclerView? = null
-    private var mandalAdapter: AlbumsAdapter_mandal? = null
-    private var albumList: ArrayList<Album>? = null
+    private var mandalAdapter: MandalsAdapter? = null
+    private var albumList: ArrayList<MusicPojo>? = null
     private val viewPagerArray = ArrayList<Int>()
     lateinit internal var drawableArray: Array<Int>
 
@@ -59,7 +59,7 @@ class MandalFragment : Fragment() {
                     R.drawable.g24, R.drawable.g28, R.drawable.g29, R.drawable.g30)
         }
 
-        mandalAdapter = AlbumsAdapter_mandal(albumList!!)
+        mandalAdapter = MandalsAdapter(albumList!!)
 
         rvMandal!!.adapter = mandalAdapter
 
@@ -77,50 +77,50 @@ class MandalFragment : Fragment() {
                 R.drawable.album_2, R.drawable.album6, R.drawable.album5, R.drawable.album1, R.drawable.img11, R.drawable.album7)
 
         if (Constant.LANGUAGE.equals("mumbai")){
-            var a = Album(activity?.resources?.getString(R.string.gsb_seva_kings_circle)!!, 13, covers[0])
+            var a = MusicPojo(activity?.resources?.getString(R.string.gsb_seva_kings_circle)!!,covers[0])
             albumList!!.add(a)
 
-            a = Album(activity?.resources?.getString(R.string.lalbaugcha_raja)!!, 8, covers[1])
+            a = MusicPojo(activity?.resources?.getString(R.string.lalbaugcha_raja)!!,covers[1])
             albumList!!.add(a)
 
-            a = Album(activity?.resources?.getString(R.string.ganesh_galli)!!, 11, covers[2])
+            a = MusicPojo(activity?.resources?.getString(R.string.ganesh_galli)!!,covers[2])
             albumList!!.add(a)
 
-            a = Album(activity?.resources?.getString(R.string.chinchpoklicha_chintamani)!!, 12, covers[3])
+            a = MusicPojo(activity?.resources?.getString(R.string.chinchpoklicha_chintamani)!!, covers[3])
             albumList!!.add(a)
 
-            a = Album(activity?.resources?.getString(R.string.chembur_raja)!!, 14, covers[4])
+            a = MusicPojo(activity?.resources?.getString(R.string.chembur_raja)!!, covers[4])
             albumList!!.add(a)
 
-            a = Album(activity?.resources?.getString(R.string.khetwadi_ganraj)!!, 1, covers[5])
+            a = MusicPojo(activity?.resources?.getString(R.string.khetwadi_ganraj)!!, covers[5])
             albumList!!.add(a)
 
-            a = Album(activity?.resources?.getString(R.string.andhericha_raja)!!, 11, covers[8])
+            a = MusicPojo(activity?.resources?.getString(R.string.andhericha_raja)!!, covers[8])
             albumList!!.add(a)
         }
         else if (Constant.LANGUAGE.equals("pune")){
-            var a = Album(activity?.resources?.getString(R.string.shrimant_dagdusheth_halwai)!!, 13, covers[0])
+            var a = MusicPojo(activity?.resources?.getString(R.string.shrimant_dagdusheth_halwai)!!, covers[0])
             albumList!!.add(a)
 
-            a = Album(activity?.resources?.getString(R.string.rajarshi_shahu_chowk)!!, 8, covers[1])
+            a = MusicPojo(activity?.resources?.getString(R.string.rajarshi_shahu_chowk)!!,covers[1])
             albumList!!.add(a)
 
-            a = Album(activity?.resources?.getString(R.string.tambadi_jogeshwari)!!, 11, covers[2])
+            a = MusicPojo(activity?.resources?.getString(R.string.tambadi_jogeshwari)!!, covers[2])
             albumList!!.add(a)
 
-            a = Album(activity?.resources?.getString(R.string.hutatma_babu_genu)!!, 12, covers[3])
+            a = MusicPojo(activity?.resources?.getString(R.string.hutatma_babu_genu)!!, covers[3])
             albumList!!.add(a)
 
-            a = Album(activity?.resources?.getString(R.string.manadai_ganeshotsav_mandal)!!, 14, covers[4])
+            a = MusicPojo(activity?.resources?.getString(R.string.manadai_ganeshotsav_mandal)!!, covers[4])
             albumList!!.add(a)
 
-            a = Album(activity?.resources?.getString(R.string.tulshibag_sarvajanik)!!, 1, covers[5])
+            a = MusicPojo(activity?.resources?.getString(R.string.tulshibag_sarvajanik)!!,covers[5])
             albumList!!.add(a)
 
-            a = Album(activity?.resources?.getString(R.string.guruji_talim_ganapati)!!, 11, covers[8])
+            a = MusicPojo(activity?.resources?.getString(R.string.guruji_talim_ganapati)!!, covers[8])
             albumList!!.add(a)
 
-            a = Album(activity?.resources?.getString(R.string.hatti_ganapati)!!, 11, covers[8])
+            a = MusicPojo(activity?.resources?.getString(R.string.hatti_ganapati)!!, covers[8])
             albumList!!.add(a)
         }
 
@@ -133,7 +133,7 @@ class MandalFragment : Fragment() {
             viewPagerArray.add(XMEN[i])
 
         mPager = v.findViewById<View>(R.id.pager) as ViewPager
-        mPager!!.adapter = MyAdapter(activity!!, viewPagerArray)
+        mPager!!.adapter = MyPagerAdapter(activity!!, viewPagerArray)
         val indicator = v.findViewById<View>(R.id.indicator) as CircleIndicator
         indicator.setViewPager(mPager)
 

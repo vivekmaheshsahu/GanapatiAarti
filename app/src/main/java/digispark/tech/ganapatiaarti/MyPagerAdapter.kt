@@ -10,7 +10,7 @@ import androidx.viewpager.widget.PagerAdapter
 
 import java.util.ArrayList
 
-class MyAdapter(private val context: Context, private val images: ArrayList<Int>) : PagerAdapter() {
+class MyPagerAdapter(private val context: Context, private val images: ArrayList<Int>) : PagerAdapter() {
     private val inflater: LayoutInflater
 
     init {
@@ -26,7 +26,7 @@ class MyAdapter(private val context: Context, private val images: ArrayList<Int>
     }
 
     override fun instantiateItem(view: ViewGroup, position: Int): Any {
-        val myImageLayout = inflater.inflate(R.layout.activity_slide, view, false)
+        val myImageLayout = inflater.inflate(R.layout.pager_list_item, view, false)
         val myImage = myImageLayout
                 .findViewById<View>(R.id.image) as ImageView
         myImage.setImageResource(images[position])

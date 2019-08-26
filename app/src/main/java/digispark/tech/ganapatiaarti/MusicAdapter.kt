@@ -1,6 +1,9 @@
 package digispark.tech.ganapatiaarti
 
+import android.content.Context
 import android.content.Intent
+import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +13,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 
-class AlbumsAdapter_written_hindi(private val albumList: List<Album>) : RecyclerView.Adapter<AlbumsAdapter_written_hindi.MyViewHolder>() {
+class MusicAdapter(private val mCtx: Context?, private val albumList: ArrayList<MusicPojo>,
+                   private val progressBarInterface: ProgressBarInterface) :
+        RecyclerView.Adapter<MusicAdapter.MyViewHolder>() {
 
+    internal var handler = Handler()
+    private var songIndex: Int? = null
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         var title: TextView
@@ -25,19 +32,29 @@ class AlbumsAdapter_written_hindi(private val albumList: List<Album>) : Recycler
 
 
         override fun onClick(itemview: View) {
-            val a: Int
-            a = position
-            val intent = Intent(itemview.context, written_hindi_detail_aarti::class.java)
-            intent.putExtra("songindex", a)
-            itemview.context.startActivity(intent)
-
+            progressBarInterface.showProgressBar()
+            if (MusicPlayerActivity.mp != null) {
+                MusicPlayerActivity.mp?.stop()
+                MusicPlayerActivity.mp = null
+            }
+            songIndex = adapterPosition
+            Log.d("test", "position_index $adapterPosition")
+            Log.d("Test", "SongInfo_name " + albumList[adapterPosition].name)
+            handler.postDelayed(r, 900)
         }
+    }
+
+    internal var r: Runnable = Runnable {
+        progressBarInterface.hideProgressBar()
+        val intent = Intent(mCtx, MusicPlayerActivity::class.java)
+        intent.putExtra("songindex", songIndex)
+        mCtx?.startActivity(intent)
     }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.writen_aarti_english, parent, false)
+                .inflate(R.layout.music_list_item, parent, false)
 
         return MyViewHolder(view)
     }
@@ -56,5 +73,9 @@ class AlbumsAdapter_written_hindi(private val albumList: List<Album>) : Recycler
         return albumList.size
     }
 
+    interface ProgressBarInterface{
+        fun showProgressBar()
+        fun hideProgressBar()
+    }
 
 }

@@ -9,7 +9,7 @@ import android.view.View
 import android.widget.ScrollView
 import androidx.core.content.ContextCompat
 import com.google.android.gms.ads.AdView
-import digispark.tech.ganapatiaarti.pojo.AlbumNew
+import digispark.tech.ganapatiaarti.pojo.AartiPojo
 import digispark.tech.ganapatiaarti.utils.OnSwipeTouchListener
 import digispark.tech.ganapatiaarti.utils.UserInterfaceUtils
 import kotlinx.android.synthetic.main.activity_show_aarti.*
@@ -20,7 +20,7 @@ class ShowAartiActivity : AppCompatActivity(){
     private var aartiName: String? = null
     private var aarti_text: Int? = null
     private var scrollShowAarti: ScrollView? = null
-    private var listOfAarti: MutableList<AlbumNew>? = null
+    private var listOfAarti: MutableList<AartiPojo>? = null
     private var aartiIndex: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +31,7 @@ class ShowAartiActivity : AppCompatActivity(){
         val intent = intent.extras
         aartiName = intent?.getString("aarti_name")
         aarti_text = intent?.getInt("aarti_text")
-        listOfAarti = intent?.getParcelableArrayList<AlbumNew>("listOfAartis")
+        listOfAarti = intent?.getParcelableArrayList<AartiPojo>("listOfAartis")
         aartiIndex = intent?.getInt("aartiIndex")
 
         if (aartiIndex == 0)

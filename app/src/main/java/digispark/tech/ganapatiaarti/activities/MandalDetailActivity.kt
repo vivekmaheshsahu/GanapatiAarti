@@ -11,13 +11,14 @@ import digispark.tech.ganapatiaarti.constants.Constant
 import digispark.tech.ganapatiaarti.utils.UserInterfaceUtils
 
 class MandalDetailActivity : BaseActivity() {
-    override fun provideLayoutId(): Int {
-        return R.layout.activity_mandal_detail
-    }
 
     private var adView: AdView? = null
     private var tvDetail: TextView? = null
     private var imgMandal: ImageView? = null
+
+    override fun provideLayoutId(): Int {
+        return R.layout.activity_mandal_detail
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
