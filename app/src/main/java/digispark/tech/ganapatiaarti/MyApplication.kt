@@ -5,6 +5,8 @@ import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.analytics.GoogleAnalytics
 import com.google.android.gms.analytics.Tracker
 import digispark.tech.ganapatiaarti.constants.Constant
+import com.crashlytics.android.Crashlytics
+import io.fabric.sdk.android.Fabric
 
 class MyApplication : Application() {
 
@@ -24,6 +26,7 @@ class MyApplication : Application() {
         MobileAds.initialize(this, getString(R.string.admob_app_id))
 
         sAnalytics = GoogleAnalytics.getInstance(this)
+        Fabric.with(this, Crashlytics())
     }
 
     companion object {

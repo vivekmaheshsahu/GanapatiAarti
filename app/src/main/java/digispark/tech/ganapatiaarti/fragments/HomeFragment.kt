@@ -3,6 +3,8 @@ package digispark.tech.ganapatiaarti.fragments
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import android.util.TypedValue
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -23,6 +25,7 @@ import digispark.tech.ganapatiaarti.MusicPlayerActivity
 import digispark.tech.ganapatiaarti.R
 import digispark.tech.ganapatiaarti.constants.Constant
 import digispark.tech.ganapatiaarti.utils.UserInterfaceUtils
+import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -37,6 +40,7 @@ class HomeFragment : Fragment(), MusicAdapter.ProgressBarInterface, View.OnClick
     private var ivPlayHome: ImageView? = null
     private var ivPauseHome: ImageView? = null
     private var viewRoot: View? = null
+    private val mHandler = Handler()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -62,6 +66,27 @@ class HomeFragment : Fragment(), MusicAdapter.ProgressBarInterface, View.OnClick
         recyclerView?.addItemDecoration(GridSpacingItemDecoration(2, dpToPx(10), true))
         recyclerView?.itemAnimator = DefaultItemAnimator()
         recyclerView?.adapter = adapter
+    }
+
+    private val runAdAutomatic = object : Runnable{
+        override fun run() {
+            try {
+                Log.d("test", "handler running")
+                if (mAdView != null){
+                    Log.d("test", "add shown in 20 secs")
+                    UserInterfaceUtils.loadAd(mAdView)
+                    mHandler.postDelayed(this, 20000)
+                }
+                else{
+                    Log.d("test", "stop handler")
+                    mHandler.removeCallbacksAndMessages(null)
+                }
+            }
+            catch (e: Exception){
+                e.printStackTrace()
+                Log.d("test", "exception_runAdAutomatic " + e.message)
+            }
+        }
     }
 
     private fun prepareAlbums() {
@@ -108,8 +133,16 @@ class HomeFragment : Fragment(), MusicAdapter.ProgressBarInterface, View.OnClick
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        if (mHandler != null)
+            mHandler.removeCallbacksAndMessages(null)
+    }
+
     override fun onResume() {
         super.onResume()
+
+        runAdAutomatic.run()
         UserInterfaceUtils.loadAd(mAdView)
 
         if (!Constant.NOW_PLAYING_SONG_NAME.isEmpty() && Constant.NOW_PLAYING_SONG_NAME.length > 1) {
@@ -133,6 +166,9 @@ class HomeFragment : Fragment(), MusicAdapter.ProgressBarInterface, View.OnClick
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.playingLayout -> {
+                if (mHandler != null)
+                    mHandler.removeCallbacksAndMessages(null)
+
                 val intent = Intent(activity, MusicPlayerActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
                 startActivity(intent)
@@ -178,6 +214,12 @@ class HomeFragment : Fragment(), MusicAdapter.ProgressBarInterface, View.OnClick
     override fun hideProgressBar() {
         progressBar?.visibility = View.GONE
         activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (mHandler != null)
+            mHandler.removeCallbacksAndMessages(null)
     }
 
 }
